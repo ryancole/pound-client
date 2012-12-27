@@ -10,9 +10,9 @@
 
 @interface MessageListCell : UITableViewCell
 
-@property (nonatomic, weak) IBOutlet UILabel *source;
-@property (nonatomic, weak) IBOutlet UILabel *message;
-@property (nonatomic, weak) IBOutlet UILabel *destination;
-@property (nonatomic, weak) IBOutlet UILabel *timestamp;
+@property (nonatomic, strong) IBOutlet UILabel *source;
+@property (nonatomic, strong) IBOutlet UILabel *message;
+@property (nonatomic, strong) IBOutlet UILabel *destination;
+@property (nonatomic, strong) IBOutlet UILabel *timestamp;
 
 @end

@@ -39,6 +39,14 @@
     [self fetchMessages];
 }
 
+#pragma mark - UITableViewDelegate Functions
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    return 135;
+    
+}
+
 #pragma mark - UITableViewDataSource Functions
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -63,6 +71,11 @@
     cell.source.text = message.source;
     cell.message.text = message.message;
     cell.destination.text = message.destination;
+    
+    // auto size the labels
+    [cell.source sizeToFit];
+    [cell.message sizeToFit];
+    [cell.destination sizeToFit];
     
     return cell;
     
