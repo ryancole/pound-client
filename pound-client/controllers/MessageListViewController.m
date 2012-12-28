@@ -10,11 +10,13 @@
 #import "MessageListCell.h"
 #import "Message.h"
 #import "APIClient.h"
+#import "../../Pods/SSPullToRefresh/SSPullToRefresh.h"
 
 @interface MessageListViewController ()
 
 @property (nonatomic, strong) UITableView *table;
 @property (nonatomic, strong) NSMutableArray *messages;
+@property (nonatomic, strong) SSPullToRefreshView *pullToRefreshView;
 
 - (void)fetchMessages;
 
@@ -24,7 +26,6 @@
 
 - (void)viewDidLoad
 {
-    // call super class constructor
     [super viewDidLoad];
     
     // initialize a table view
@@ -34,6 +35,9 @@
     
     // add the table to this view's subview
     [self.view addSubview:_table];
+    
+    // initialize third party libs
+    _pullToRefreshView = [[SSPullToRefreshView alloc] initWithScrollView:_table delegate:self];
     
     // fetch messages
     [self fetchMessages];
@@ -85,19 +89,74 @@
 
 - (void)fetchMessages {
     
-    [[APIClient sharedInstance] getMessagesWithLimit:25 success:^(id messages) {
+    if (_messages.count == 0) {
         
-        // store the messages
-        _messages = messages;
+        [[APIClient sharedInstance] getMessages:^(NSMutableArray *messages) {
+            
+            // store the messages
+            _messages = messages;
+            
+            // end pull to refresh
+            [_pullToRefreshView finishLoading];
+            
+            // reload the table view
+            [_table reloadData];
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            
+            // end pull to refresh
+            [_pullToRefreshView finishLoading];
+            
+        }];
         
-        // reload the table view
-        [_table reloadData];
+    } else {
         
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        // get the most recent message
+        Message *recent = [_messages objectAtIndex:0];
         
-        NSLog(@"Error: %@ %@", error, [error userInfo]);
+        NSLog(@"since: %@", recent.id);
         
-    }];
+        // get all messages since this message
+        [[APIClient sharedInstance] getMessagesSince:recent.id
+                                             success:^(NSMutableArray *messages) {
+                                                 
+                                                 if (messages.count > 0) {
+                                                     
+                                                     NSLog(@"adding: %d", messages.count);
+                                                     
+                                                     // record the new messages
+                                                     [_messages insertObjects:messages atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, messages.count)]];
+                                                     
+                                                     // refresh the table
+                                                     [_table reloadData];
+                                                     
+                                                 }
+                                                 
+                                                 // end pull to refresh
+                                                 [_pullToRefreshView finishLoading];
+                                                 
+                                             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                                 
+                                                 // end pull to refresh
+                                                 [_pullToRefreshView finishLoading];
+                                                 
+                                             }];
+        
+    }
+    
+}
+
+#pragma mark - SSPullToRefreshDelgate Functions
+
+- (BOOL)pullToRefreshViewShouldStartLoading:(SSPullToRefreshView *)view {
+    
+    return YES;
+    
+}
+
+- (void)pullToRefreshViewDidStartLoading:(SSPullToRefreshView *)view {
+    
+    [self fetchMessages];
     
 }
 
