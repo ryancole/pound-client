@@ -72,14 +72,12 @@
         cell = [[MessageListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"messageListCell"];
     
     // set the cell attributes
-    cell.source.text = message.source;
+    cell.source.text = [NSString stringWithFormat:@"%@, to %@", message.source, message.destination];
     cell.message.text = message.message;
-    cell.destination.text = message.destination;
     
     // auto size the labels
     [cell.source sizeToFit];
     [cell.message sizeToFit];
-    [cell.destination sizeToFit];
     
     return cell;
     
@@ -114,15 +112,11 @@
         // get the most recent message
         Message *recent = [_messages objectAtIndex:0];
         
-        NSLog(@"since: %@", recent.id);
-        
         // get all messages since this message
         [[APIClient sharedInstance] getMessagesSince:recent.id
                                              success:^(NSMutableArray *messages) {
                                                  
                                                  if (messages.count > 0) {
-                                                     
-                                                     NSLog(@"adding: %d", messages.count);
                                                      
                                                      // record the new messages
                                                      [_messages insertObjects:messages atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, messages.count)]];

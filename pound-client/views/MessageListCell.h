@@ -12,7 +12,5 @@
 
 @property (nonatomic, strong) IBOutlet UILabel *source;
 @property (nonatomic, strong) IBOutlet UILabel *message;
-@property (nonatomic, strong) IBOutlet UILabel *destination;
-@property (nonatomic, strong) IBOutlet UILabel *timestamp;
 
 @end
