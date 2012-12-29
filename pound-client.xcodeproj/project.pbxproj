@@ -12,6 +12,7 @@
 		943042EB168E5D6E009339E3 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 943042EA168E5D6E009339E3 /* Settings.bundle */; };
 		949941B0168F8F6A00E6C73D /* ContentModeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 949941AF168F8F6A00E6C73D /* ContentModeLabel.m */; };
 		949941B3168F90CC00E6C73D /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 949941B2168F90CC00E6C73D /* Utilities.m */; };
+		949941B6168F96A100E6C73D /* ComposeMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 949941B5168F96A100E6C73D /* ComposeMessageViewController.m */; };
 		94A85098168BB71F00E10AD1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94A85097168BB71F00E10AD1 /* UIKit.framework */; };
 		94A8509A168BB71F00E10AD1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94A85099168BB71F00E10AD1 /* Foundation.framework */; };
 		94A8509C168BB71F00E10AD1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94A8509B168BB71F00E10AD1 /* CoreGraphics.framework */; };
@@ -41,6 +42,8 @@
 		949941AF168F8F6A00E6C73D /* ContentModeLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentModeLabel.m; sourceTree = "<group>"; };
 		949941B1168F90CC00E6C73D /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		949941B2168F90CC00E6C73D /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
+		949941B4168F96A100E6C73D /* ComposeMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComposeMessageViewController.h; sourceTree = "<group>"; };
+		949941B5168F96A100E6C73D /* ComposeMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposeMessageViewController.m; sourceTree = "<group>"; };
 		94A85093168BB71F00E10AD1 /* pound-client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "pound-client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		94A85097168BB71F00E10AD1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		94A85099168BB71F00E10AD1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -176,6 +179,8 @@
 				94A850C2168BC4AC00E10AD1 /* BaseViewController.m */,
 				94C49C22168C010D002F7B01 /* MessageListViewController.h */,
 				94C49C23168C010D002F7B01 /* MessageListViewController.m */,
+				949941B4168F96A100E6C73D /* ComposeMessageViewController.h */,
+				949941B5168F96A100E6C73D /* ComposeMessageViewController.m */,
 			);
 			name = Controllers;
 			path = controllers;
@@ -275,6 +280,7 @@
 				94077898168CE3B000889505 /* MessageListCell.m in Sources */,
 				949941B0168F8F6A00E6C73D /* ContentModeLabel.m in Sources */,
 				949941B3168F90CC00E6C73D /* Utilities.m in Sources */,
+				949941B6168F96A100E6C73D /* ComposeMessageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
