@@ -10,8 +10,8 @@
 #import "MessageListCell.h"
 #import "Message.h"
 #import "APIClient.h"
+#import "Utilities.h"
 #import "../../Pods/SSPullToRefresh/SSPullToRefresh.h"
-#import "../utilities/Utilities.h"
 
 @interface MessageListViewController ()
 

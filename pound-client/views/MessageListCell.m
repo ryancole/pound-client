@@ -7,7 +7,7 @@
 //
 
 #import "MessageListCell.h"
-#import "../utilities/ContentModeLabel.h"
+#import "ContentModeLabel.h"
 
 @implementation MessageListCell
 

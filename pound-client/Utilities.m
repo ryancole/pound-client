@@ -33,19 +33,15 @@
         
     } else if ([messageDateComponents year] == [todayDateComponents year] && dayOfYearForMessage == (dayOfYearForToday-1)) {
         
-        dateString = @"Yesterday";
-        
-    } else if ([messageDateComponents year] == [todayDateComponents year] && dayOfYearForMessage > (dayOfYearForToday-6)) {
-        
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"EEEE"];
-        dateString = [dateFormatter stringFromDate:timestamp];
+        dateString = [NSString stringWithFormat:@"Yesterday %@", [NSDateFormatter localizedStringFromDate:timestamp
+                                                                                                dateStyle:NSDateFormatterNoStyle
+                                                                                                timeStyle:NSDateFormatterShortStyle]];
         
     } else {
         
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"yy"];
-        dateString = [NSString stringWithFormat:@"%02d/%02d/%@", [messageDateComponents day], [messageDateComponents month], [dateFormatter stringFromDate:timestamp]];
+        dateString = [NSDateFormatter localizedStringFromDate:timestamp
+                                                    dateStyle:NSDateFormatterShortStyle
+                                                    timeStyle:NSDateFormatterShortStyle];
         
     }
     
