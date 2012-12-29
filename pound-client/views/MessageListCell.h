@@ -13,4 +13,6 @@
 @property (nonatomic, strong) IBOutlet UILabel *source;
 @property (nonatomic, strong) IBOutlet UILabel *message;
 
+- (CGFloat)getCalculatedCellHeight;
+
 @end

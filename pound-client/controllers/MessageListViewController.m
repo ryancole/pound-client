@@ -47,7 +47,11 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    return 135;
+    // get the cell for this index path
+    MessageListCell *cell = (MessageListCell *)[self tableView:tableView cellForRowAtIndexPath:indexPath];
+    
+    // return the calculated height for this cell
+    return [cell getCalculatedCellHeight];
     
 }
 
@@ -74,10 +78,6 @@
     // set the cell attributes
     cell.source.text = [NSString stringWithFormat:@"%@, to %@", message.source, message.destination];
     cell.message.text = message.message;
-    
-    // auto size the labels
-    [cell.source sizeToFit];
-    [cell.message sizeToFit];
     
     return cell;
     

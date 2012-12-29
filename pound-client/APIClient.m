@@ -19,7 +19,7 @@
     
     dispatch_once(&onceToken, ^{
         
-        _sharedInstance = [[APIClient alloc] initWithBaseURL:[NSURL URLWithString:@"http://localhost:8080/"]];
+        _sharedInstance = [[APIClient alloc] initWithBaseURL:[[NSUserDefaults standardUserDefaults] URLForKey:@"baseApiUrl"]];
         
     });
     

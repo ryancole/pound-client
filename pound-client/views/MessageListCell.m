@@ -7,6 +7,7 @@
 //
 
 #import "MessageListCell.h"
+#import "../utilities/ContentModeLabel.h"
 
 @implementation MessageListCell
 
@@ -16,13 +17,18 @@
     if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
         
         // source label
-        _source = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, self.frame.size.width - 20, 25)];
-        _source.font = [UIFont boldSystemFontOfSize:10];
-        [self.contentView addSubview:_source];
+        _source = [[ContentModeLabel alloc] initWithFrame:CGRectMake(10, 10, self.frame.size.width - 40, 20)];
+        _source.contentMode = UIViewContentModeTop;
+        _source.font = [UIFont boldSystemFontOfSize:12];
         
         // message label
-        _message = [[UILabel alloc] initWithFrame:CGRectMake(10, 40, self.frame.size.width - 20, 50)];
+        _message = [[ContentModeLabel alloc] initWithFrame:CGRectMake(10, 35, self.frame.size.width - 40, 30)];
+        _message.numberOfLines = 0;
+        _message.contentMode = UIViewContentModeTop;
         _message.font = [UIFont systemFontOfSize:12];
+        
+        // add the labels to the cell
+        [self.contentView addSubview:_source];
         [self.contentView addSubview:_message];
         
     }
@@ -36,6 +42,14 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+#pragma mark - Custom Functions
+
+- (CGFloat)getCalculatedCellHeight {
+    
+    return _message.frame.size.height + _source.frame.size.height + 30;
+    
 }
 
 @end

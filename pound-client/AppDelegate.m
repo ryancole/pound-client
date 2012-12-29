@@ -15,4 +15,10 @@
     return YES;
 }
 
+- (void)applicationWillEnterForeground:(UIApplication *)application {
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+}
+
 @end
