@@ -10,10 +10,10 @@
 
 @interface Message : NSObject
 
-@property (nonatomic, copy) NSString *id;
-@property (nonatomic, copy) NSString *source;
-@property (nonatomic, copy) NSString *message;
-@property (nonatomic, copy) NSString *destination;
+@property (nonatomic, strong) NSString *id;
+@property (nonatomic, strong) NSString *source;
+@property (nonatomic, strong) NSString *message;
+@property (nonatomic, strong) NSString *destination;
 @property (nonatomic, strong) NSDate *timestamp;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;

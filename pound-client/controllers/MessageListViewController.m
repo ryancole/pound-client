@@ -11,6 +11,7 @@
 #import "Message.h"
 #import "APIClient.h"
 #import "../../Pods/SSPullToRefresh/SSPullToRefresh.h"
+#import "../utilities/Utilities.h"
 
 @interface MessageListViewController ()
 
@@ -78,6 +79,7 @@
     // set the cell attributes
     cell.source.text = [NSString stringWithFormat:@"%@, to %@", message.source, message.destination];
     cell.message.text = message.message;
+    cell.timestamp.text = [Utilities relativeTime:message.timestamp];
     
     return cell;
     

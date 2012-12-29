@@ -16,10 +16,18 @@
     // intiialize the cell
     if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
         
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        
         // source label
-        _source = [[ContentModeLabel alloc] initWithFrame:CGRectMake(10, 10, self.frame.size.width - 40, 20)];
+        _source = [[ContentModeLabel alloc] initWithFrame:CGRectMake(10, 10, (self.frame.size.width / 2) - 10, 20)];
         _source.contentMode = UIViewContentModeTop;
-        _source.font = [UIFont boldSystemFontOfSize:12];
+        _source.font = [UIFont boldSystemFontOfSize:10];
+        
+        // timestamp label
+        _timestamp = [[ContentModeLabel alloc] initWithFrame:CGRectMake(self.frame.size.width / 2, 10, (self.frame.size.width / 2) - 30, 20)];
+        _timestamp.contentMode = UIViewContentModeTop;
+        _timestamp.font = [UIFont italicSystemFontOfSize:10];
+        _timestamp.textAlignment = NSTextAlignmentRight;
         
         // message label
         _message = [[ContentModeLabel alloc] initWithFrame:CGRectMake(10, 35, self.frame.size.width - 40, 30)];
@@ -30,6 +38,7 @@
         // add the labels to the cell
         [self.contentView addSubview:_source];
         [self.contentView addSubview:_message];
+        [self.contentView addSubview:_timestamp];
         
     }
     

@@ -26,6 +26,7 @@
 		94C49C2C168C07C6002F7B01 /* APIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 94C49C2B168C07C6002F7B01 /* APIClient.m */; };
 		94C49C32168C0C75002F7B01 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94C49C31168C0C75002F7B01 /* SystemConfiguration.framework */; };
 		94C49C34168C0C7B002F7B01 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94C49C33168C0C7B002F7B01 /* MobileCoreServices.framework */; };
+		94F04E57168EAB43002329F6 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F04E56168EAB43002329F6 /* Utilities.m */; };
 		F98B66306D844B5396AE1C6C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 86421DB009C74B4E8C401220 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +61,8 @@
 		94C49C2B168C07C6002F7B01 /* APIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIClient.m; sourceTree = "<group>"; };
 		94C49C31168C0C75002F7B01 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		94C49C33168C0C7B002F7B01 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		94F04E55168EAB43002329F6 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
+		94F04E56168EAB43002329F6 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
 		9A19872B1640417FBE803151 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -105,6 +108,8 @@
 			children = (
 				943042E4168E4BE9009339E3 /* ContentModeLabel.h */,
 				943042E5168E4BE9009339E3 /* ContentModeLabel.m */,
+				94F04E55168EAB43002329F6 /* Utilities.h */,
+				94F04E56168EAB43002329F6 /* Utilities.m */,
 			);
 			name = Utilities;
 			path = utilities;
@@ -278,6 +283,7 @@
 				94077894168CD53B00889505 /* Message.m in Sources */,
 				94077898168CE3B000889505 /* MessageListCell.m in Sources */,
 				943042E6168E4BE9009339E3 /* ContentModeLabel.m in Sources */,
+				94F04E57168EAB43002329F6 /* Utilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

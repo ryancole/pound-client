@@ -22,7 +22,7 @@
         self.source = [value valueForKey:@"source"];
         self.message = [value valueForKey:@"message"];
         self.destination = [value valueForKey:@"destination"];
-        self.timestamp = [NSDate dateWithTimeIntervalSince1970:[[value valueForKey:@"timestamp"] doubleValue]];
+        self.timestamp = [NSDate dateWithTimeIntervalSince1970:[[value objectForKey:@"timestamp"] integerValue]];
         
     }
     
