@@ -19,7 +19,9 @@
     
     dispatch_once(&onceToken, ^{
         
-        _sharedInstance = [[APIClient alloc] initWithBaseURL:[[NSUserDefaults standardUserDefaults] URLForKey:@"baseApiUrl"]];
+        NSURL *baseApiUrl = [[NSURL alloc] initWithString:[[NSUserDefaults standardUserDefaults] stringForKey:@"baseApiUrl"]];
+        
+        _sharedInstance = [[APIClient alloc] initWithBaseURL:baseApiUrl];
         
     });
     

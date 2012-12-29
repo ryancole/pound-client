@@ -12,13 +12,32 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // register the application defaults from settings.bundle
+    [self registerDefaultsFromSettingsBundle];
+    
     return YES;
 }
 
-- (void)applicationWillEnterForeground:(UIApplication *)application {
+- (void)registerDefaultsFromSettingsBundle {
     
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    NSString *settingsBundle = [[NSBundle mainBundle] pathForResource:@"Settings" ofType:@"bundle"];
+    NSDictionary *settings = [NSDictionary dictionaryWithContentsOfFile:[settingsBundle stringByAppendingPathComponent:@"Root.plist"]];
+    NSArray *preferences = [settings objectForKey:@"PreferenceSpecifiers"];
+    NSMutableDictionary *defaultsToRegister = [[NSMutableDictionary alloc] initWithCapacity:[preferences count]];
     
+    for (NSDictionary *prefSpecification in preferences) {
+        
+        NSString *key = [prefSpecification objectForKey:@"Key"];
+        
+        if (key) {
+            
+            [defaultsToRegister setObject:[prefSpecification objectForKey:@"DefaultValue"] forKey:key];
+            
+        }
+        
+    }
+    
+    [[NSUserDefaults standardUserDefaults] registerDefaults:defaultsToRegister];
 }
 
 @end
