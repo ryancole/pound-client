@@ -23,4 +23,7 @@
             success:(void (^)())success
             failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
+- (void)getChannels:(void (^)(NSMutableArray *channels))success
+            failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
 @end

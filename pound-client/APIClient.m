@@ -8,6 +8,7 @@
 
 #import "APIClient.h"
 #import "models/Message.h"
+#import "models/Channel.h"
 #import "../Pods/AFNetworking/AFNetworking/AFNetworking.h"
 
 @implementation APIClient
@@ -100,6 +101,28 @@
     [self postPath:@"message" parameters:query success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         success();
+        
+    } failure:failure];
+    
+}
+
+- (void)getChannels:(void (^)(NSMutableArray *channels))success
+            failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    
+    // fetch all channels
+    [self getPath:@"channel" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSMutableArray *channels = [NSMutableArray array];
+        
+        // populate the collection with channel objects
+        for (id channel in responseObject) {
+            
+            [channels addObject:[[Channel alloc] initWithDictionary:channel]];
+            
+        }
+        
+        // pass the channels on
+        success(channels);
         
     } failure:failure];
     

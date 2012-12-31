@@ -28,6 +28,9 @@
 		94C49C2C168C07C6002F7B01 /* APIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 94C49C2B168C07C6002F7B01 /* APIClient.m */; };
 		94C49C32168C0C75002F7B01 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94C49C31168C0C75002F7B01 /* SystemConfiguration.framework */; };
 		94C49C34168C0C7B002F7B01 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94C49C33168C0C7B002F7B01 /* MobileCoreServices.framework */; };
+		94F56452169152C70040D029 /* ChannelListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F56451169152C70040D029 /* ChannelListViewController.m */; };
+		94F56456169153940040D029 /* Channel.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F56455169153940040D029 /* Channel.m */; };
+		94F56459169157570040D029 /* ChannelListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F56458169157570040D029 /* ChannelListCell.m */; };
 		F98B66306D844B5396AE1C6C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 86421DB009C74B4E8C401220 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +69,12 @@
 		94C49C2B168C07C6002F7B01 /* APIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIClient.m; sourceTree = "<group>"; };
 		94C49C31168C0C75002F7B01 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		94C49C33168C0C7B002F7B01 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		94F56450169152C70040D029 /* ChannelListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelListViewController.h; sourceTree = "<group>"; };
+		94F56451169152C70040D029 /* ChannelListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelListViewController.m; sourceTree = "<group>"; };
+		94F56454169153940040D029 /* Channel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Channel.h; sourceTree = "<group>"; };
+		94F56455169153940040D029 /* Channel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Channel.m; sourceTree = "<group>"; };
+		94F56457169157570040D029 /* ChannelListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelListCell.h; sourceTree = "<group>"; };
+		94F56458169157570040D029 /* ChannelListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelListCell.m; sourceTree = "<group>"; };
 		9A19872B1640417FBE803151 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -91,6 +100,8 @@
 			children = (
 				94077892168CD53B00889505 /* Message.h */,
 				94077893168CD53B00889505 /* Message.m */,
+				94F56454169153940040D029 /* Channel.h */,
+				94F56455169153940040D029 /* Channel.m */,
 			);
 			name = Models;
 			path = models;
@@ -103,6 +114,8 @@
 				949941AF168F8F6A00E6C73D /* ContentModeLabel.m */,
 				94077896168CE3B000889505 /* MessageListCell.h */,
 				94077897168CE3B000889505 /* MessageListCell.m */,
+				94F56457169157570040D029 /* ChannelListCell.h */,
+				94F56458169157570040D029 /* ChannelListCell.m */,
 			);
 			name = Views;
 			path = views;
@@ -181,6 +194,8 @@
 				94C49C23168C010D002F7B01 /* MessageListViewController.m */,
 				949941B4168F96A100E6C73D /* ComposeMessageViewController.h */,
 				949941B5168F96A100E6C73D /* ComposeMessageViewController.m */,
+				94F56450169152C70040D029 /* ChannelListViewController.h */,
+				94F56451169152C70040D029 /* ChannelListViewController.m */,
 			);
 			name = Controllers;
 			path = controllers;
@@ -281,6 +296,9 @@
 				949941B0168F8F6A00E6C73D /* ContentModeLabel.m in Sources */,
 				949941B3168F90CC00E6C73D /* Utilities.m in Sources */,
 				949941B6168F96A100E6C73D /* ComposeMessageViewController.m in Sources */,
+				94F56452169152C70040D029 /* ChannelListViewController.m in Sources */,
+				94F56456169153940040D029 /* Channel.m in Sources */,
+				94F56459169157570040D029 /* ChannelListCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
