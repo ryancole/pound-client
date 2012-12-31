@@ -7,6 +7,7 @@
 //
 
 #import "ComposeMessageViewController.h"
+#import "APIClient.h"
 
 @interface ComposeMessageViewController ()
 
@@ -59,7 +60,15 @@
 
 - (void)sendButtonPressed:(id)sender {
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [[APIClient sharedInstance] sendMessage:_input.text success:^{
+        
+        [self dismissViewControllerAnimated:YES completion:nil];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        [self dismissViewControllerAnimated:YES completion:nil];
+        
+    }];
     
 }
 

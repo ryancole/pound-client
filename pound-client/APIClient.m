@@ -90,4 +90,19 @@
     
 }
 
+- (void)sendMessage:(NSString *)message
+            success:(void (^)())success
+            failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    
+    NSDictionary *query = @{ @"message": message };
+    
+    // send the message
+    [self postPath:@"message" parameters:query success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        success();
+        
+    } failure:failure];
+    
+}
+
 @end
