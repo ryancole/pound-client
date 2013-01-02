@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		94077894168CD53B00889505 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 94077893168CD53B00889505 /* Message.m */; };
 		94077898168CE3B000889505 /* MessageListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94077897168CE3B000889505 /* MessageListCell.m */; };
+		942D2050169249ED00CD57DD /* ComposeMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 942D204F169249EC00CD57DD /* ComposeMessageViewController.m */; };
 		943042EB168E5D6E009339E3 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 943042EA168E5D6E009339E3 /* Settings.bundle */; };
 		949941B0168F8F6A00E6C73D /* ContentModeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 949941AF168F8F6A00E6C73D /* ContentModeLabel.m */; };
 		949941B3168F90CC00E6C73D /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 949941B2168F90CC00E6C73D /* Utilities.m */; };
-		949941B6168F96A100E6C73D /* ComposeMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 949941B5168F96A100E6C73D /* ComposeMessageViewController.m */; };
 		94A85098168BB71F00E10AD1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94A85097168BB71F00E10AD1 /* UIKit.framework */; };
 		94A8509A168BB71F00E10AD1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94A85099168BB71F00E10AD1 /* Foundation.framework */; };
 		94A8509C168BB71F00E10AD1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94A8509B168BB71F00E10AD1 /* CoreGraphics.framework */; };
@@ -28,6 +28,8 @@
 		94C49C2C168C07C6002F7B01 /* APIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 94C49C2B168C07C6002F7B01 /* APIClient.m */; };
 		94C49C32168C0C75002F7B01 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94C49C31168C0C75002F7B01 /* SystemConfiguration.framework */; };
 		94C49C34168C0C7B002F7B01 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94C49C33168C0C7B002F7B01 /* MobileCoreServices.framework */; };
+		94D3A9491694DE7D0089DA97 /* MessageInputBarBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 94D3A9471694DE7D0089DA97 /* MessageInputBarBackground.png */; };
+		94D3A94A1694DE7D0089DA97 /* MessageInputBarBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94D3A9481694DE7D0089DA97 /* MessageInputBarBackground@2x.png */; };
 		94F56452169152C70040D029 /* ChannelListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F56451169152C70040D029 /* ChannelListViewController.m */; };
 		94F56456169153940040D029 /* Channel.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F56455169153940040D029 /* Channel.m */; };
 		94F56459169157570040D029 /* ChannelListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F56458169157570040D029 /* ChannelListCell.m */; };
@@ -40,13 +42,13 @@
 		94077893168CD53B00889505 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		94077896168CE3B000889505 /* MessageListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageListCell.h; sourceTree = "<group>"; };
 		94077897168CE3B000889505 /* MessageListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageListCell.m; sourceTree = "<group>"; };
+		942D204E169249EC00CD57DD /* ComposeMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComposeMessageViewController.h; sourceTree = "<group>"; };
+		942D204F169249EC00CD57DD /* ComposeMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposeMessageViewController.m; sourceTree = "<group>"; };
 		943042EA168E5D6E009339E3 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		949941AE168F8F6A00E6C73D /* ContentModeLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentModeLabel.h; sourceTree = "<group>"; };
 		949941AF168F8F6A00E6C73D /* ContentModeLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentModeLabel.m; sourceTree = "<group>"; };
 		949941B1168F90CC00E6C73D /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		949941B2168F90CC00E6C73D /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
-		949941B4168F96A100E6C73D /* ComposeMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComposeMessageViewController.h; sourceTree = "<group>"; };
-		949941B5168F96A100E6C73D /* ComposeMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposeMessageViewController.m; sourceTree = "<group>"; };
 		94A85093168BB71F00E10AD1 /* pound-client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "pound-client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		94A85097168BB71F00E10AD1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		94A85099168BB71F00E10AD1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -69,6 +71,8 @@
 		94C49C2B168C07C6002F7B01 /* APIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIClient.m; sourceTree = "<group>"; };
 		94C49C31168C0C75002F7B01 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		94C49C33168C0C7B002F7B01 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		94D3A9471694DE7D0089DA97 /* MessageInputBarBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MessageInputBarBackground.png; sourceTree = "<group>"; };
+		94D3A9481694DE7D0089DA97 /* MessageInputBarBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MessageInputBarBackground@2x.png"; sourceTree = "<group>"; };
 		94F56450169152C70040D029 /* ChannelListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelListViewController.h; sourceTree = "<group>"; };
 		94F56451169152C70040D029 /* ChannelListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelListViewController.m; sourceTree = "<group>"; };
 		94F56454169153940040D029 /* Channel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Channel.h; sourceTree = "<group>"; };
@@ -125,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				94A8509D168BB71F00E10AD1 /* pound-client */,
+				94D3A9441694DCA20089DA97 /* Resources */,
 				94A85096168BB71F00E10AD1 /* Frameworks */,
 				94A85094168BB71F00E10AD1 /* Products */,
 				9A19872B1640417FBE803151 /* Pods.xcconfig */,
@@ -192,13 +197,31 @@
 				94A850C2168BC4AC00E10AD1 /* BaseViewController.m */,
 				94C49C22168C010D002F7B01 /* MessageListViewController.h */,
 				94C49C23168C010D002F7B01 /* MessageListViewController.m */,
-				949941B4168F96A100E6C73D /* ComposeMessageViewController.h */,
-				949941B5168F96A100E6C73D /* ComposeMessageViewController.m */,
 				94F56450169152C70040D029 /* ChannelListViewController.h */,
 				94F56451169152C70040D029 /* ChannelListViewController.m */,
+				942D204E169249EC00CD57DD /* ComposeMessageViewController.h */,
+				942D204F169249EC00CD57DD /* ComposeMessageViewController.m */,
 			);
 			name = Controllers;
 			path = controllers;
+			sourceTree = "<group>";
+		};
+		94D3A9441694DCA20089DA97 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				94D3A9461694DE610089DA97 /* Messages */,
+			);
+			name = Resources;
+			path = "pound-client/resources";
+			sourceTree = "<group>";
+		};
+		94D3A9461694DE610089DA97 /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				94D3A9471694DE7D0089DA97 /* MessageInputBarBackground.png */,
+				94D3A9481694DE7D0089DA97 /* MessageInputBarBackground@2x.png */,
+			);
+			name = Messages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,6 +282,8 @@
 				94A850AE168BB71F00E10AD1 /* Default-568h@2x.png in Resources */,
 				94A850B9168BB7D800E10AD1 /* Storyboard.storyboard in Resources */,
 				943042EB168E5D6E009339E3 /* Settings.bundle in Resources */,
+				94D3A9491694DE7D0089DA97 /* MessageInputBarBackground.png in Resources */,
+				94D3A94A1694DE7D0089DA97 /* MessageInputBarBackground@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,10 +320,10 @@
 				94077898168CE3B000889505 /* MessageListCell.m in Sources */,
 				949941B0168F8F6A00E6C73D /* ContentModeLabel.m in Sources */,
 				949941B3168F90CC00E6C73D /* Utilities.m in Sources */,
-				949941B6168F96A100E6C73D /* ComposeMessageViewController.m in Sources */,
 				94F56452169152C70040D029 /* ChannelListViewController.m in Sources */,
 				94F56456169153940040D029 /* Channel.m in Sources */,
 				94F56459169157570040D029 /* ChannelListCell.m in Sources */,
+				942D2050169249ED00CD57DD /* ComposeMessageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

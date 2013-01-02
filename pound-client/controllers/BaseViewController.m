@@ -40,9 +40,11 @@
     
     ComposeMessageViewController *view = [[ComposeMessageViewController alloc] init];
     
+    // the view should slide up from the bottom and cover everything
     view.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     view.modalPresentationStyle = UIModalPresentationFormSheet;
     
+    // bring up the view
     [self presentViewController:view animated:YES completion:nil];
     
 }

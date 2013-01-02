@@ -17,7 +17,7 @@
     if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
         
         // channel label
-        _name = [[ContentModeLabel alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+        _name = [[ContentModeLabel alloc] initWithFrame:CGRectMake(10, 0, self.frame.size.width - 20, self.frame.size.height)];
         
         // add the labels to the cell
         [self.contentView addSubview:_name];

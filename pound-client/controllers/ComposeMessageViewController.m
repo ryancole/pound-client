@@ -9,23 +9,25 @@
 #import "ComposeMessageViewController.h"
 #import "APIClient.h"
 
-@interface ComposeMessageViewController ()
+@interface ComposeMessageViewController () <UITextViewDelegate>
 
-@property (nonatomic, strong) UITextView *input;
+@property (nonatomic, strong) UITextView *messageInput;
+@property (nonatomic, strong) UIImageView *selectChannelArea;
 
 @end
 
 @implementation ComposeMessageViewController
 
+#pragma mark - UIViewController
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    // initialize a toolbar
-    UIToolbar *toolbar = [[UIToolbar alloc] init];
-    toolbar.frame = CGRectMake(0, 0, self.view.frame.size.width, 44);
-    
     NSMutableArray *items = [[NSMutableArray alloc] init];
+    
+    // initialize the toolbar
+    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
     
     // create the collection of bar button items
     [items addObject:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelButtonPressed:)]];
@@ -35,20 +37,43 @@
     // add the compose button to the toolbar
     [toolbar setItems:items];
     
-    // create the input area
-    _input = [[UITextView alloc] initWithFrame:CGRectMake(0, 44, self.view.frame.size.width, self.view.frame.size.height)];
-    
     // add the toolbar to this view's subview
     [self.view addSubview:toolbar];
-    [self.view addSubview:_input];
+    
+    // initialize the message input area
+    _messageInput = [[UITextView alloc] initWithFrame:CGRectMake(0, 44, self.view.frame.size.width, self.view.frame.size.height)];
+    _messageInput.delegate = self;
+    
+    // add the message input area to the view
+    [self.view addSubview:_messageInput];
+    
+    // initialize the select channel area
+    _selectChannelArea = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 44, self.view.frame.size.width, 44)];
+    _selectChannelArea.image = [[UIImage imageNamed:@"MessageInputBarBackground"] resizableImageWithCapInsets:UIEdgeInsetsMake(19, 3, 19, 3)];
+    _selectChannelArea.userInteractionEnabled = YES;
+    _selectChannelArea.opaque = YES;
+    
+    // add the channel select area to the view
+    [self.view addSubview:_selectChannelArea];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
     
-    // focus the input text field
-    [_input becomeFirstResponder];
+    // register to receive keyboard notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    
+    // automatically highlight the message input area
+    [_messageInput becomeFirstResponder];
+    
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    
+    // remove the registered observers for keyboard events
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     
 }
 
@@ -60,15 +85,41 @@
 
 - (void)sendButtonPressed:(id)sender {
     
-    [[APIClient sharedInstance] sendMessage:_input.text success:^{
-        
-        [self dismissViewControllerAnimated:YES completion:nil];
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-        [self dismissViewControllerAnimated:YES completion:nil];
-        
-    }];
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+}
+
+#pragma mark - Keyboard Notifications
+
+- (void)keyboardWillShow:(NSNotification *)notification {
+    
+    CGRect frameEnd;
+    NSTimeInterval animationDuration;
+    UIViewAnimationCurve animationCurve;
+    
+    NSDictionary *userInfo = [notification userInfo];
+    
+    [[userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey] getValue:&animationCurve];
+    [[userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] getValue:&animationDuration];
+    [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&frameEnd];
+    
+    [UIView animateWithDuration:animationDuration
+                          delay:0.0
+                        options:(UIViewAnimationOptionBeginFromCurrentState)
+                     animations:^{
+                         
+                         CGFloat viewHeight = [self.view convertRect:frameEnd fromView:nil].origin.y;
+                         
+                         _selectChannelArea.frame = CGRectMake(_selectChannelArea.frame.origin.x, viewHeight - _selectChannelArea.frame.size.height, _selectChannelArea.frame.size.width, _selectChannelArea.frame.size.height);
+                         
+                         
+    } completion:nil];
+    
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification {
+    
+    
     
 }
 

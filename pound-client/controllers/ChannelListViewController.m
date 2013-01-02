@@ -10,12 +10,12 @@
 #import "APIClient.h"
 #import "ChannelListCell.h"
 #import "Channel.h"
+#import "ContentModeLabel.h"
 
 @interface ChannelListViewController ()
 
 @property (nonatomic, strong) UITableView *table;
 @property (nonatomic, strong) NSMutableArray *channels;
-@property (nonatomic, strong) SSPullToRefreshView *pullToRefreshView;
 
 - (void)fetchChannels;
 
@@ -27,16 +27,13 @@
 {
     [super viewDidLoad];
     
-    // initialize a table view
-    _table = [[UITableView alloc] initWithFrame:CGRectMake(0, 44, self.view.frame.size.width, self.view.frame.size.height) style:UITableViewStyleGrouped];
+    // initialize the table
+    _table = [[UITableView alloc] initWithFrame:CGRectMake(0, 44, self.view.frame.size.width, self.view.frame.size.height - 44) style:UITableViewStyleGrouped];
     _table.dataSource = self;
     _table.delegate = self;
     
-    // add the table to this view's subview
+    // add the table to the subviews
     [self.view addSubview:_table];
-    
-    // initialize third party libs
-    _pullToRefreshView = [[SSPullToRefreshView alloc] initWithScrollView:_table delegate:self];
     
     // fetch messages
     [self fetchChannels];
@@ -90,32 +87,15 @@
         // store the channels
         _channels = channels;
         
-        // end pull to refresh
-        [_pullToRefreshView finishLoading];
-        
         // reload the table view
         [_table reloadData];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-        // end pull to refresh
-        [_pullToRefreshView finishLoading];
+
+        // reload the table view
+        [_table reloadData];
         
     }];
-    
-}
-
-#pragma mark - SSPullToRefreshDelgate Functions
-
-- (BOOL)pullToRefreshViewShouldStartLoading:(SSPullToRefreshView *)view {
-    
-    return YES;
-    
-}
-
-- (void)pullToRefreshViewDidStartLoading:(SSPullToRefreshView *)view {
-    
-    [self fetchChannels];
     
 }
 

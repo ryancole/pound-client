@@ -7,8 +7,7 @@
 //
 
 #import "BaseViewController.h"
-#import "../../Pods/SSPullToRefresh/SSPullToRefresh.h"
 
-@interface ChannelListViewController : BaseViewController <UITableViewDelegate, UITableViewDataSource, SSPullToRefreshViewDelegate>
+@interface ChannelListViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate>
 
 @end
