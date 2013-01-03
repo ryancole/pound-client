@@ -10,6 +10,9 @@
 
 @interface Utilities : NSObject
 
+@property (nonatomic) NSString *previousRecipient;
+
++ (Utilities *)sharedInstance;
 + (NSString *)relativeTime:(NSDate *)timestamp;
 
 @end

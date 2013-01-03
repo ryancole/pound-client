@@ -9,12 +9,14 @@
 #import "ComposeMessageViewController.h"
 #import "SelectRecipientViewController.h"
 #import "APIClient.h"
+#import "Utilities.h"
 
 @interface ComposeMessageViewController () <UITextViewDelegate, SelectRecipientDelegate>
 
 @property (nonatomic, strong) UITextView *messageInput;
 @property (nonatomic, strong) UIImageView *selectRecipientArea;
 @property (nonatomic, strong) NSString *selectedRecipientName;
+@property (nonatomic, strong) UILabel *selectedRecipientLabel;
 
 @end
 
@@ -58,14 +60,16 @@
     // add the channel select area to the view
     [self.view addSubview:_selectRecipientArea];
     
+    _selectedRecipientName = [Utilities sharedInstance].previousRecipient;
+    
     // initialize the label for the channel select area
-    UILabel *selectRecipientLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 100, _selectRecipientArea.frame.size.height)];
-    selectRecipientLabel.backgroundColor = [UIColor clearColor];
-    selectRecipientLabel.textColor = [UIColor grayColor];
-    selectRecipientLabel.text = @"To:";
+    _selectedRecipientLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 100, _selectRecipientArea.frame.size.height)];
+    _selectedRecipientLabel.backgroundColor = [UIColor clearColor];
+    _selectedRecipientLabel.textColor = [UIColor grayColor];
+    _selectedRecipientLabel.text = [NSString stringWithFormat:@"To: %@", _selectedRecipientName];
     
     // add the label to the recipient select area
-    [_selectRecipientArea addSubview:selectRecipientLabel];
+    [_selectRecipientArea addSubview:_selectedRecipientLabel];
     
     // initialize the select recipient button
     UIButton *selectRecipientButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
@@ -216,6 +220,12 @@
     
     // save the selected recipient text
     _selectedRecipientName = recipient;
+    
+    // also in the global
+    [[Utilities sharedInstance] setPreviousRecipient:recipient];
+    
+    // update the label
+    _selectedRecipientLabel.text = [NSString stringWithFormat:@"To: %@", recipient];
     
 }
 

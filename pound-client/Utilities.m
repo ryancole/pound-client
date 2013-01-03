@@ -10,8 +10,23 @@
 
 @implementation Utilities
 
-+ (NSString *)relativeTime:(NSDate *)timestamp
-{
++ (Utilities *)sharedInstance {
+    
+    static Utilities *_sharedInstance = nil;
+    static dispatch_once_t onceToken;
+    
+    dispatch_once(&onceToken, ^{
+        
+        _sharedInstance = [[Utilities alloc] init];
+        
+    });
+    
+    return _sharedInstance;
+    
+}
+
++ (NSString *)relativeTime:(NSDate *)timestamp {
+    
     // intiailize the calendar
     NSCalendar *calendar = [NSCalendar currentCalendar];
     unsigned int unitFlags =  NSYearCalendarUnit|NSMonthCalendarUnit|NSWeekCalendarUnit|NSWeekdayOrdinalCalendarUnit|NSWeekdayCalendarUnit|NSDayCalendarUnit|NSHourCalendarUnit|NSMinuteCalendarUnit;

@@ -7,6 +7,7 @@
 //
 
 #import "BaseViewController.h"
+#import "Utilities.h"
 
 @interface BaseViewController ()
 
@@ -56,7 +57,7 @@
 - (void)messageWasSent:(NSString *)message toRecipient:(NSString *)recipient {
     
     // make note of the previous recipient for future messages
-    _previousRecipient = recipient;
+    [[Utilities sharedInstance] setPreviousRecipient:recipient];
     
 }
 
