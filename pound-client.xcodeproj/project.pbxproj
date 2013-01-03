@@ -31,6 +31,16 @@
 		94C49C34168C0C7B002F7B01 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94C49C33168C0C7B002F7B01 /* MobileCoreServices.framework */; };
 		94D3A9491694DE7D0089DA97 /* MessageInputBarBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 94D3A9471694DE7D0089DA97 /* MessageInputBarBackground.png */; };
 		94D3A94A1694DE7D0089DA97 /* MessageInputBarBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94D3A9481694DE7D0089DA97 /* MessageInputBarBackground@2x.png */; };
+		94DC5F051695FA980015CAC5 /* comment_24.png in Resources */ = {isa = PBXBuildFile; fileRef = 94DC5F021695FA980015CAC5 /* comment_24.png */; };
+		94DC5F061695FA980015CAC5 /* comment_48.png in Resources */ = {isa = PBXBuildFile; fileRef = 94DC5F031695FA980015CAC5 /* comment_48.png */; };
+		94DC5F071695FA980015CAC5 /* comment_64.png in Resources */ = {isa = PBXBuildFile; fileRef = 94DC5F041695FA980015CAC5 /* comment_64.png */; };
+		94DC5F0B1695FD9F0015CAC5 /* alarm_on_24.png in Resources */ = {isa = PBXBuildFile; fileRef = 94DC5F081695FD9F0015CAC5 /* alarm_on_24.png */; };
+		94DC5F0C1695FD9F0015CAC5 /* alarm_on_48.png in Resources */ = {isa = PBXBuildFile; fileRef = 94DC5F091695FD9F0015CAC5 /* alarm_on_48.png */; };
+		94DC5F0D1695FD9F0015CAC5 /* alarm_on_64.png in Resources */ = {isa = PBXBuildFile; fileRef = 94DC5F0A1695FD9F0015CAC5 /* alarm_on_64.png */; };
+		94DC5F111695FE910015CAC5 /* app_globe_24.png in Resources */ = {isa = PBXBuildFile; fileRef = 94DC5F0E1695FE910015CAC5 /* app_globe_24.png */; };
+		94DC5F121695FE910015CAC5 /* app_globe_48.png in Resources */ = {isa = PBXBuildFile; fileRef = 94DC5F0F1695FE910015CAC5 /* app_globe_48.png */; };
+		94DC5F131695FE910015CAC5 /* app_globe_64.png in Resources */ = {isa = PBXBuildFile; fileRef = 94DC5F101695FE910015CAC5 /* app_globe_64.png */; };
+		94DC5F16169612910015CAC5 /* MentionListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DC5F15169612910015CAC5 /* MentionListViewController.m */; };
 		94F56452169152C70040D029 /* ChannelListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F56451169152C70040D029 /* ChannelListViewController.m */; };
 		94F56456169153940040D029 /* Channel.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F56455169153940040D029 /* Channel.m */; };
 		94F56459169157570040D029 /* ChannelListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F56458169157570040D029 /* ChannelListCell.m */; };
@@ -76,6 +86,17 @@
 		94C49C33168C0C7B002F7B01 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		94D3A9471694DE7D0089DA97 /* MessageInputBarBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MessageInputBarBackground.png; sourceTree = "<group>"; };
 		94D3A9481694DE7D0089DA97 /* MessageInputBarBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MessageInputBarBackground@2x.png"; sourceTree = "<group>"; };
+		94DC5F021695FA980015CAC5 /* comment_24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comment_24.png; sourceTree = "<group>"; };
+		94DC5F031695FA980015CAC5 /* comment_48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comment_48.png; sourceTree = "<group>"; };
+		94DC5F041695FA980015CAC5 /* comment_64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comment_64.png; sourceTree = "<group>"; };
+		94DC5F081695FD9F0015CAC5 /* alarm_on_24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alarm_on_24.png; sourceTree = "<group>"; };
+		94DC5F091695FD9F0015CAC5 /* alarm_on_48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alarm_on_48.png; sourceTree = "<group>"; };
+		94DC5F0A1695FD9F0015CAC5 /* alarm_on_64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alarm_on_64.png; sourceTree = "<group>"; };
+		94DC5F0E1695FE910015CAC5 /* app_globe_24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_globe_24.png; sourceTree = "<group>"; };
+		94DC5F0F1695FE910015CAC5 /* app_globe_48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_globe_48.png; sourceTree = "<group>"; };
+		94DC5F101695FE910015CAC5 /* app_globe_64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_globe_64.png; sourceTree = "<group>"; };
+		94DC5F14169612910015CAC5 /* MentionListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MentionListViewController.h; sourceTree = "<group>"; };
+		94DC5F15169612910015CAC5 /* MentionListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MentionListViewController.m; sourceTree = "<group>"; };
 		94F56450169152C70040D029 /* ChannelListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelListViewController.h; sourceTree = "<group>"; };
 		94F56451169152C70040D029 /* ChannelListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelListViewController.m; sourceTree = "<group>"; };
 		94F56454169153940040D029 /* Channel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Channel.h; sourceTree = "<group>"; };
@@ -206,6 +227,8 @@
 				942D204F169249EC00CD57DD /* ComposeMessageViewController.m */,
 				943C3D0C16950EB300789040 /* SelectRecipientViewController.h */,
 				943C3D0D16950EB300789040 /* SelectRecipientViewController.m */,
+				94DC5F14169612910015CAC5 /* MentionListViewController.h */,
+				94DC5F15169612910015CAC5 /* MentionListViewController.m */,
 			);
 			name = Controllers;
 			path = controllers;
@@ -223,6 +246,15 @@
 		94D3A9461694DE610089DA97 /* Messages */ = {
 			isa = PBXGroup;
 			children = (
+				94DC5F0E1695FE910015CAC5 /* app_globe_24.png */,
+				94DC5F0F1695FE910015CAC5 /* app_globe_48.png */,
+				94DC5F101695FE910015CAC5 /* app_globe_64.png */,
+				94DC5F081695FD9F0015CAC5 /* alarm_on_24.png */,
+				94DC5F091695FD9F0015CAC5 /* alarm_on_48.png */,
+				94DC5F0A1695FD9F0015CAC5 /* alarm_on_64.png */,
+				94DC5F021695FA980015CAC5 /* comment_24.png */,
+				94DC5F031695FA980015CAC5 /* comment_48.png */,
+				94DC5F041695FA980015CAC5 /* comment_64.png */,
 				94D3A9471694DE7D0089DA97 /* MessageInputBarBackground.png */,
 				94D3A9481694DE7D0089DA97 /* MessageInputBarBackground@2x.png */,
 			);
@@ -289,6 +321,15 @@
 				943042EB168E5D6E009339E3 /* Settings.bundle in Resources */,
 				94D3A9491694DE7D0089DA97 /* MessageInputBarBackground.png in Resources */,
 				94D3A94A1694DE7D0089DA97 /* MessageInputBarBackground@2x.png in Resources */,
+				94DC5F051695FA980015CAC5 /* comment_24.png in Resources */,
+				94DC5F061695FA980015CAC5 /* comment_48.png in Resources */,
+				94DC5F071695FA980015CAC5 /* comment_64.png in Resources */,
+				94DC5F0B1695FD9F0015CAC5 /* alarm_on_24.png in Resources */,
+				94DC5F0C1695FD9F0015CAC5 /* alarm_on_48.png in Resources */,
+				94DC5F0D1695FD9F0015CAC5 /* alarm_on_64.png in Resources */,
+				94DC5F111695FE910015CAC5 /* app_globe_24.png in Resources */,
+				94DC5F121695FE910015CAC5 /* app_globe_48.png in Resources */,
+				94DC5F131695FE910015CAC5 /* app_globe_64.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,6 +371,7 @@
 				94F56459169157570040D029 /* ChannelListCell.m in Sources */,
 				942D2050169249ED00CD57DD /* ComposeMessageViewController.m in Sources */,
 				943C3D0E16950EB300789040 /* SelectRecipientViewController.m in Sources */,
+				94DC5F16169612910015CAC5 /* MentionListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

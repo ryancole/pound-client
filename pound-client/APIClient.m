@@ -129,4 +129,51 @@
     
 }
 
+- (void)getMentions:(void (^)(NSMutableArray *mentions))success
+            failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    
+    // fetch all messages
+    [self getPath:@"mention" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSMutableArray *mentions = [NSMutableArray array];
+        
+        // populate the collection with message objects
+        for (id mention in responseObject) {
+            
+            [mentions addObject:[[Message alloc] initWithDictionary:mention]];
+            
+        }
+        
+        // pass the messages on
+        success(mentions);
+        
+    } failure:failure];
+    
+}
+
+- (void)getMentionsSince:(NSString *)endkey
+                 success:(void (^)(NSMutableArray *mentions))success
+                 failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    
+    NSDictionary *query = @{ @"endkey": endkey };
+    
+    // fetch all messages
+    [self getPath:@"mention" parameters:query success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSMutableArray *mentions = [NSMutableArray array];
+        
+        // populate the collection with message objects
+        for (id mention in responseObject) {
+            
+            [mentions addObject:[[Message alloc] initWithDictionary:mention]];
+            
+        }
+        
+        // pass the messages on
+        success(mentions);
+        
+    } failure:failure];
+    
+}
+
 @end

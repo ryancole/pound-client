@@ -27,4 +27,11 @@
 - (void)getChannels:(void (^)(NSMutableArray *channels))success
             failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
+- (void)getMentions:(void (^)(NSMutableArray *mentions))success
+            failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
+- (void)getMentionsSince:(NSString *)offset
+                 success:(void (^)(NSMutableArray *mentions))success
+                 failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
 @end
