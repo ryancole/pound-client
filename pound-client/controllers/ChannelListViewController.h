@@ -8,6 +8,6 @@
 
 #import "BaseViewController.h"
 
-@interface ChannelListViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate>
+@interface ChannelListViewController : BaseViewController
 
 @end

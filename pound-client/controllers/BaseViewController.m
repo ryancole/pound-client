@@ -7,9 +7,10 @@
 //
 
 #import "BaseViewController.h"
-#import "ComposeMessageViewController.h"
 
 @interface BaseViewController ()
+
+@property (nonatomic, strong) NSString *previousRecipient;
 
 @end
 
@@ -43,9 +44,19 @@
     // the view should slide up from the bottom and cover everything
     view.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     view.modalPresentationStyle = UIModalPresentationFormSheet;
+    view.delegate = self;
     
     // bring up the view
     [self presentViewController:view animated:YES completion:nil];
+    
+}
+
+#pragma mark - ComposeMessageDelegate
+
+- (void)messageWasSent:(NSString *)message toRecipient:(NSString *)recipient {
+    
+    // make note of the previous recipient for future messages
+    _previousRecipient = recipient;
     
 }
 

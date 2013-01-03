@@ -92,11 +92,11 @@
 }
 
 - (void)sendMessage:(NSString *)message
-          toChannel:(NSString *)channel
+          toRecipient:(NSString *)recipient
             success:(void (^)())success
             failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
     
-    NSDictionary *query = @{ @"message": message };
+    NSDictionary *query = @{ @"message": message, @"recipient": recipient };
     
     // send the message
     [self postPath:@"message" parameters:query success:^(AFHTTPRequestOperation *operation, id responseObject) {

@@ -11,6 +11,7 @@
 @interface Channel : NSObject
 
 @property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSArray *users;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 

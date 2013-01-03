@@ -11,6 +11,7 @@
 		94077898168CE3B000889505 /* MessageListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94077897168CE3B000889505 /* MessageListCell.m */; };
 		942D2050169249ED00CD57DD /* ComposeMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 942D204F169249EC00CD57DD /* ComposeMessageViewController.m */; };
 		943042EB168E5D6E009339E3 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 943042EA168E5D6E009339E3 /* Settings.bundle */; };
+		943C3D0E16950EB300789040 /* SelectRecipientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 943C3D0D16950EB300789040 /* SelectRecipientViewController.m */; };
 		949941B0168F8F6A00E6C73D /* ContentModeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 949941AF168F8F6A00E6C73D /* ContentModeLabel.m */; };
 		949941B3168F90CC00E6C73D /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 949941B2168F90CC00E6C73D /* Utilities.m */; };
 		94A85098168BB71F00E10AD1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94A85097168BB71F00E10AD1 /* UIKit.framework */; };
@@ -45,6 +46,8 @@
 		942D204E169249EC00CD57DD /* ComposeMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComposeMessageViewController.h; sourceTree = "<group>"; };
 		942D204F169249EC00CD57DD /* ComposeMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposeMessageViewController.m; sourceTree = "<group>"; };
 		943042EA168E5D6E009339E3 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		943C3D0C16950EB300789040 /* SelectRecipientViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectRecipientViewController.h; sourceTree = "<group>"; };
+		943C3D0D16950EB300789040 /* SelectRecipientViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectRecipientViewController.m; sourceTree = "<group>"; };
 		949941AE168F8F6A00E6C73D /* ContentModeLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentModeLabel.h; sourceTree = "<group>"; };
 		949941AF168F8F6A00E6C73D /* ContentModeLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentModeLabel.m; sourceTree = "<group>"; };
 		949941B1168F90CC00E6C73D /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
@@ -201,6 +204,8 @@
 				94F56451169152C70040D029 /* ChannelListViewController.m */,
 				942D204E169249EC00CD57DD /* ComposeMessageViewController.h */,
 				942D204F169249EC00CD57DD /* ComposeMessageViewController.m */,
+				943C3D0C16950EB300789040 /* SelectRecipientViewController.h */,
+				943C3D0D16950EB300789040 /* SelectRecipientViewController.m */,
 			);
 			name = Controllers;
 			path = controllers;
@@ -324,6 +329,7 @@
 				94F56456169153940040D029 /* Channel.m in Sources */,
 				94F56459169157570040D029 /* ChannelListCell.m in Sources */,
 				942D2050169249ED00CD57DD /* ComposeMessageViewController.m in Sources */,
+				943C3D0E16950EB300789040 /* SelectRecipientViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -20,7 +20,7 @@
                  failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
 - (void)sendMessage:(NSString *)message
-          toChannel:(NSString *)channel
+        toRecipient:(NSString *)recipient
             success:(void (^)())success
             failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 

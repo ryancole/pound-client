@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol ComposeMessageDelegate <NSObject>
+
+- (void)messageWasSent:(NSString *)message
+           toRecipient:(NSString *)recipient;
+
+@end
+
+
 @interface ComposeMessageViewController : UIViewController
+
+@property (nonatomic, assign) id<ComposeMessageDelegate> delegate;
 
 @end

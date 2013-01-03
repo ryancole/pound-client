@@ -9,6 +9,6 @@
 #import "BaseViewController.h"
 #import "../../Pods/SSPullToRefresh/SSPullToRefresh.h"
 
-@interface MessageListViewController : BaseViewController <UITableViewDelegate, UITableViewDataSource, SSPullToRefreshViewDelegate>
+@interface MessageListViewController : BaseViewController
 
 @end

@@ -12,7 +12,7 @@
 #import "Channel.h"
 #import "ContentModeLabel.h"
 
-@interface ChannelListViewController ()
+@interface ChannelListViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) UITableView *table;
 @property (nonatomic, strong) NSMutableArray *channels;

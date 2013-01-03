@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ComposeMessageViewController.h"
 
-@interface BaseViewController : UIViewController
+@interface BaseViewController : UIViewController <ComposeMessageDelegate>
 
 @end

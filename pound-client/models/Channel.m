@@ -14,8 +14,11 @@
     
     if ((self = [super init])) {
         
+        NSDictionary *users = [dictionary valueForKey:@"users"];
+        
         // initialize the properties
         _name = [dictionary valueForKey:@"key"];
+        _users = [NSArray arrayWithArray:users.allKeys];
         
     }
     

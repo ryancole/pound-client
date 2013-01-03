@@ -11,9 +11,10 @@
 #import "Message.h"
 #import "APIClient.h"
 #import "Utilities.h"
+#import "ComposeMessageViewController.h"
 #import "../../Pods/SSPullToRefresh/SSPullToRefresh.h"
 
-@interface MessageListViewController ()
+@interface MessageListViewController () <UITableViewDelegate, UITableViewDataSource, SSPullToRefreshViewDelegate>
 
 @property (nonatomic, strong) UITableView *table;
 @property (nonatomic, strong) NSMutableArray *messages;
@@ -152,6 +153,18 @@
 
 - (void)pullToRefreshViewDidStartLoading:(SSPullToRefreshView *)view {
     
+    [self fetchMessages];
+    
+}
+
+#pragma mark - ComposeMessageDelegate
+
+- (void)messageWasSent:(NSString *)message toRecipient:(NSString *)recipient {
+    
+    // make sure to handle the super class call too
+    [super messageWasSent:message toRecipient:recipient];
+    
+    // reload the table to display our new message
     [self fetchMessages];
     
 }
