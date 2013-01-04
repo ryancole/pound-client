@@ -9,6 +9,10 @@
 #import "MessageListCell.h"
 #import "ContentModeLabel.h"
 
+#define LEFT_RIGHT_MARGIN 10.0
+#define TOP_BOTTOM_MARGIN 10.0
+#define LABEL_LINE_HEIGHT 20.0
+
 @implementation MessageListCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -19,18 +23,30 @@
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         
         // source label
-        _source = [[ContentModeLabel alloc] initWithFrame:CGRectMake(10, 10, (self.frame.size.width / 2) - 10, 20)];
+        _source = [[ContentModeLabel alloc] initWithFrame:CGRectMake(LEFT_RIGHT_MARGIN,
+                                                                     TOP_BOTTOM_MARGIN,
+                                                                     140.0,
+                                                                     LABEL_LINE_HEIGHT)];
+
+        _source.font = [UIFont boldSystemFontOfSize:12];
         _source.contentMode = UIViewContentModeTop;
-        _source.font = [UIFont boldSystemFontOfSize:10];
         
         // timestamp label
-        _timestamp = [[ContentModeLabel alloc] initWithFrame:CGRectMake(self.frame.size.width / 2, 10, (self.frame.size.width / 2) - 30, 20)];
-        _timestamp.contentMode = UIViewContentModeTop;
-        _timestamp.font = [UIFont italicSystemFontOfSize:10];
+        _timestamp = [[ContentModeLabel alloc] initWithFrame:CGRectMake(140.0 + LEFT_RIGHT_MARGIN,
+                                                                        TOP_BOTTOM_MARGIN,
+                                                                        140.0,
+                                                                        LABEL_LINE_HEIGHT)];
+        
+        _timestamp.font = [UIFont italicSystemFontOfSize:12];
         _timestamp.textAlignment = NSTextAlignmentRight;
+        _timestamp.contentMode = UIViewContentModeTop;
         
         // message label
-        _message = [[ContentModeLabel alloc] initWithFrame:CGRectMake(10, 35, self.frame.size.width - 40, 30)];
+        _message = [[ContentModeLabel alloc] initWithFrame:CGRectMake(LEFT_RIGHT_MARGIN,
+                                                                      LABEL_LINE_HEIGHT * 2.0,
+                                                                      280.0,
+                                                                      LABEL_LINE_HEIGHT)];
+        
         _message.numberOfLines = 0;
         _message.contentMode = UIViewContentModeTop;
         _message.font = [UIFont systemFontOfSize:12];
@@ -58,6 +74,16 @@
 - (CGFloat)getCalculatedCellHeight {
     
     return _message.frame.size.height + _source.frame.size.height + 30;
+    
+}
+
+- (void)adjustHeights {
+    
+    // calculate the needed height
+    CGSize size = [_message.text sizeWithFont:[UIFont systemFontOfSize:12] constrainedToSize:CGSizeMake(280.0, 500.0)];
+    
+    // adjust the frame for this height
+    _message.frame = CGRectMake(_message.frame.origin.x, _message.frame.origin.y, _message.frame.size.width, size.height);
     
 }
 

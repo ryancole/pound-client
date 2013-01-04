@@ -30,7 +30,10 @@
     [super viewDidLoad];
     
     // initialize a table view
-    _table = [[UITableView alloc] initWithFrame:CGRectMake(0, 44, self.view.frame.size.width, self.view.frame.size.height) style:UITableViewStyleGrouped];
+    _table = [[UITableView alloc] initWithFrame:CGRectMake(0,
+                                                           TOP_BAR_HEIGHT,
+                                                           self.view.frame.size.width,
+                                                           self.view.frame.size.height - (TOP_BAR_HEIGHT + TAB_BAR_HEIGHT)) style:UITableViewStyleGrouped];
     _table.dataSource = self;
     _table.delegate = self;
     
