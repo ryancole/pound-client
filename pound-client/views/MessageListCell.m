@@ -69,21 +69,27 @@
     // Configure the view for the selected state
 }
 
-#pragma mark - Custom Functions
-
-- (CGFloat)getCalculatedCellHeight {
+- (void)layoutSubviews {
     
-    return _message.frame.size.height + _source.frame.size.height + 30;
-    
-}
-
-- (void)adjustHeights {
+    [super layoutSubviews];
     
     // calculate the needed height
     CGSize size = [_message.text sizeWithFont:[UIFont systemFontOfSize:12] constrainedToSize:CGSizeMake(280.0, 500.0)];
     
     // adjust the frame for this height
     _message.frame = CGRectMake(_message.frame.origin.x, _message.frame.origin.y, _message.frame.size.width, size.height);
+    
+}
+
+#pragma mark - Custom Functions
+
+- (CGFloat)getCalculatedCellHeight {
+    
+    // calculate the needed height
+    CGSize messageLabelSize = [_message.text sizeWithFont:[UIFont systemFontOfSize:12] constrainedToSize:CGSizeMake(280.0, 500.0)];
+    
+    // the total height of all combined labels that affect height, plus margins
+    return messageLabelSize.height + _source.frame.size.height + (TOP_BOTTOM_MARGIN * 3);
     
 }
 

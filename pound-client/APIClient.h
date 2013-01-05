@@ -27,6 +27,10 @@
 - (void)getChannels:(void (^)(NSMutableArray *channels))success
             failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
+- (void)leaveChannel:(NSString *)name
+             success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+             failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
 - (void)getMentions:(void (^)(NSMutableArray *mentions))success
             failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 

@@ -7,37 +7,37 @@
 //
 
 #import "AppDelegate.h"
+#import "MessageListViewController.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // register the application defaults from settings.bundle
-    [self registerDefaultsFromSettingsBundle];
+    // set the tab bar delegate
+    UITabBarController *tabBarController = (UITabBarController *)_window.rootViewController;
+    tabBarController.delegate = self;
     
     return YES;
 }
 
-- (void)registerDefaultsFromSettingsBundle {
+#pragma mark - UITabBarControllerDelegate
+
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
     
-    NSString *settingsBundle = [[NSBundle mainBundle] pathForResource:@"Settings" ofType:@"bundle"];
-    NSDictionary *settings = [NSDictionary dictionaryWithContentsOfFile:[settingsBundle stringByAppendingPathComponent:@"Root.plist"]];
-    NSArray *preferences = [settings objectForKey:@"PreferenceSpecifiers"];
-    NSMutableDictionary *defaultsToRegister = [[NSMutableDictionary alloc] initWithCapacity:[preferences count]];
-    
-    for (NSDictionary *prefSpecification in preferences) {
+    if (tabBarController.selectedViewController == viewController && [viewController isKindOfClass:[MessageListViewController class]]) {
         
-        NSString *key = [prefSpecification objectForKey:@"Key"];
+        // get reference to the selected view controller
+        MessageListViewController *messageList = (MessageListViewController *)viewController;
         
-        if (key) {
-            
-            [defaultsToRegister setObject:[prefSpecification objectForKey:@"DefaultValue"] forKey:key];
-            
-        }
+        // scroll the table to the top
+        [messageList scrollTableToTop];
+        
+        return NO;
         
     }
     
-    [[NSUserDefaults standardUserDefaults] registerDefaults:defaultsToRegister];
+    return YES;
+    
 }
 
 @end

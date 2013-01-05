@@ -29,6 +29,14 @@
 {
     [super viewDidLoad];
     
+    NSMutableArray *items = [[self.toolbar items] mutableCopy];
+    
+    // create the compose button
+    [items insertObject:[[UIBarButtonItem alloc] initWithTitle:@"Join" style:UIBarButtonItemStyleBordered target:self action:nil] atIndex:0];
+    
+    // add the button to the toolbar
+    [self.toolbar setItems:items];
+    
     // initialize the table
     _table = [[UITableView alloc] initWithFrame:CGRectMake(0,
                                                            TOP_BAR_HEIGHT,
@@ -36,6 +44,7 @@
                                                            self.view.frame.size.height - (TOP_BAR_HEIGHT + TAB_BAR_HEIGHT)) style:UITableViewStyleGrouped];
     _table.dataSource = self;
     _table.delegate = self;
+    _table.editing = YES;
     
     // add the table to the subviews
     [self.view addSubview:_table];
@@ -83,6 +92,29 @@
     cell.name.text = channel.name;
     
     return cell;
+    
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        // get the requested channel to be left
+        Channel *channel = [_channels objectAtIndex:indexPath.row];
+        
+        // leave the channel
+        [[APIClient sharedInstance] leaveChannel:channel.name
+                                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                             
+                                             [self fetchChannels];
+                                             
+                                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                             
+                                             /* not sure */
+                                             
+                                         }];
+        
+    }
     
 }
 

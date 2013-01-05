@@ -15,6 +15,5 @@
 @property (nonatomic, strong) IBOutlet UILabel *timestamp;
 
 - (CGFloat)getCalculatedCellHeight;
-- (void)adjustHeights;
 
 @end

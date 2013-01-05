@@ -14,4 +14,6 @@
 
 @interface BaseViewController : UIViewController <ComposeMessageDelegate>
 
+@property (nonatomic, strong) UIToolbar *toolbar;
+
 @end

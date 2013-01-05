@@ -17,25 +17,30 @@
 
 @implementation BaseViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
+    
     // call super class constructor
     [super viewDidLoad];
     
-    // initialize a toolbar
-    UIToolbar *toolbar = [[UIToolbar alloc] init];
-    toolbar.frame = CGRectMake(0, 0, self.view.frame.size.width, 44);
-
-    // create the compose button
     NSMutableArray *items = [[NSMutableArray alloc] init];
+    
+    // initialize the top toolbar
+    _toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
+    
+    // create the compose button with a bordered style
+    UIBarButtonItem *composeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(composeMessageButtonPressed:)];
+    composeButton.style = UIBarButtonItemStyleBordered;
+    
+    // add the flex space and button to the toolbar items collection
     [items addObject:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil]];
-    [items addObject:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(composeMessageButtonPressed:)]];
+    [items addObject:composeButton];
     
     // add the compose button to the toolbar
-    [toolbar setItems:items];
+    [_toolbar setItems:items];
     
-    // add the toolbar to this view's subview
-    [self.view addSubview:toolbar];
+    // add the toolbar to this view's subview]
+    [self.view addSubview:_toolbar];
+    
 }
 
 - (void)composeMessageButtonPressed:(id)sender {

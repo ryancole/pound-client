@@ -44,8 +44,15 @@
     // initialize third party libs
     _pullToRefreshView = [[SSPullToRefreshView alloc] initWithScrollView:_table delegate:self];
     
-    // fetch messages
+    // fetch new messages
     [self fetchMessages];
+    
+}
+
+- (void)scrollTableToTop {
+    
+    [_table scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+    
 }
 
 #pragma mark - UITableViewDelegate Functions
@@ -84,9 +91,6 @@
     cell.source.text = [NSString stringWithFormat:@"%@, to %@", message.source, message.destination];
     cell.message.text = message.message;
     cell.timestamp.text = [Utilities relativeTime:message.timestamp];
-    
-    // make the cell adjust its own heights
-    [cell adjustHeights];
     
     return cell;
     

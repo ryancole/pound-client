@@ -10,4 +10,6 @@
 
 @interface MessageListViewController : BaseViewController
 
+- (void)scrollTableToTop;
+
 @end
