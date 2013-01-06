@@ -11,45 +11,37 @@
 
 #define LEFT_RIGHT_MARGIN 10.0
 #define TOP_BOTTOM_MARGIN 10.0
-#define LABEL_LINE_HEIGHT 20.0
+#define LABEL_LINE_HEIGHT 15.0
+
+@interface MessageListCell () <OHAttributedLabelDelegate>
+
+@end
 
 @implementation MessageListCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
-    // intiialize the cell
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    
     if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
         
-        self.selectionStyle = UITableViewCellSelectionStyleNone;
-        
         // source label
-        _source = [[ContentModeLabel alloc] initWithFrame:CGRectMake(LEFT_RIGHT_MARGIN,
-                                                                     TOP_BOTTOM_MARGIN,
-                                                                     140.0,
-                                                                     LABEL_LINE_HEIGHT)];
-
+        _source = [[UILabel alloc] init];
         _source.font = [UIFont boldSystemFontOfSize:12];
-        _source.contentMode = UIViewContentModeTop;
+        _source.backgroundColor = [UIColor clearColor];
         
         // timestamp label
-        _timestamp = [[ContentModeLabel alloc] initWithFrame:CGRectMake(140.0 + LEFT_RIGHT_MARGIN,
-                                                                        TOP_BOTTOM_MARGIN,
-                                                                        140.0,
-                                                                        LABEL_LINE_HEIGHT)];
-        
-        _timestamp.font = [UIFont italicSystemFontOfSize:12];
+        _timestamp = [[UILabel alloc] init];
+        _timestamp.font = [UIFont systemFontOfSize:12];
         _timestamp.textAlignment = NSTextAlignmentRight;
-        _timestamp.contentMode = UIViewContentModeTop;
+        _timestamp.textColor = [UIColor blueColor];
+        _timestamp.backgroundColor = [UIColor clearColor];
         
         // message label
-        _message = [[ContentModeLabel alloc] initWithFrame:CGRectMake(LEFT_RIGHT_MARGIN,
-                                                                      LABEL_LINE_HEIGHT * 2.0,
-                                                                      280.0,
-                                                                      LABEL_LINE_HEIGHT)];
-        
-        _message.numberOfLines = 0;
-        _message.contentMode = UIViewContentModeTop;
+        _message = [[OHAttributedLabel alloc] init];
         _message.font = [UIFont systemFontOfSize:12];
+        _message.numberOfLines = 0;
+        _message.lineBreakMode = NSLineBreakByWordWrapping;
+        _message.backgroundColor = [UIColor clearColor];
+        _message.delegate = self;
         
         // add the labels to the cell
         [self.contentView addSubview:_source];
@@ -58,26 +50,25 @@
         
     }
     
-    // return the custom cell
     return self;
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+    
 }
 
 - (void)layoutSubviews {
     
     [super layoutSubviews];
     
-    // calculate the needed height
-    CGSize size = [_message.text sizeWithFont:[UIFont systemFontOfSize:12] constrainedToSize:CGSizeMake(280.0, 500.0)];
+    // half of the cell's content view width
+    CGFloat halfCellWidth = self.contentView.frame.size.width / 2;
     
-    // adjust the frame for this height
-    _message.frame = CGRectMake(_message.frame.origin.x, _message.frame.origin.y, _message.frame.size.width, size.height);
+    // the dimensions of the message label, primarily for the height
+    CGSize mesageLabelDimensions = [_message.text sizeWithFont:[UIFont systemFontOfSize:12]
+                                             constrainedToSize:CGSizeMake(self.contentView.frame.size.width - (LEFT_RIGHT_MARGIN * 2), CGFLOAT_MAX)];
+    
+    // adjust the frames of the cell labels
+    _source.frame = CGRectMake(LEFT_RIGHT_MARGIN, TOP_BOTTOM_MARGIN, halfCellWidth - LEFT_RIGHT_MARGIN, LABEL_LINE_HEIGHT);
+    _timestamp.frame = CGRectMake(halfCellWidth, TOP_BOTTOM_MARGIN, halfCellWidth - LEFT_RIGHT_MARGIN, LABEL_LINE_HEIGHT);
+    _message.frame = CGRectMake(LEFT_RIGHT_MARGIN, LABEL_LINE_HEIGHT + (TOP_BOTTOM_MARGIN * 2), mesageLabelDimensions.width, mesageLabelDimensions.height);
     
 }
 
@@ -85,11 +76,20 @@
 
 - (CGFloat)getCalculatedCellHeight {
     
-    // calculate the needed height
-    CGSize messageLabelSize = [_message.text sizeWithFont:[UIFont systemFontOfSize:12] constrainedToSize:CGSizeMake(280.0, 500.0)];
+    // the dimensions of the message label, primarily for the height
+    CGSize mesageLabelDimensions = [_message.text sizeWithFont:[UIFont systemFontOfSize:12]
+                                             constrainedToSize:CGSizeMake(self.contentView.frame.size.width - (LEFT_RIGHT_MARGIN * 2), CGFLOAT_MAX)];
     
     // the total height of all combined labels that affect height, plus margins
-    return messageLabelSize.height + _source.frame.size.height + (TOP_BOTTOM_MARGIN * 3);
+    return mesageLabelDimensions.height + LABEL_LINE_HEIGHT + (TOP_BOTTOM_MARGIN * 4);
+    
+}
+
+#pragma mark - OHAttributedLabel
+
+-(BOOL)attributedLabel:(OHAttributedLabel*)attributedLabel shouldFollowLink:(NSTextCheckingResult*)linkInfo {
+    
+    return YES;
     
 }
 

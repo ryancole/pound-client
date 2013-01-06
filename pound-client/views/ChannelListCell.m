@@ -7,32 +7,37 @@
 //
 
 #import "ChannelListCell.h"
-#import "ContentModeLabel.h"
+
+#define LEFT_RIGHT_MARGIN 10.0
+#define TOP_BOTTOM_MARGIN 10.0
+#define LABEL_LINE_HEIGHT 20.0
 
 @implementation ChannelListCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
-    // intiialize the cell
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    
     if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
         
         // channel label
-        _name = [[ContentModeLabel alloc] initWithFrame:CGRectMake(10, 0, self.frame.size.width - 20, self.frame.size.height)];
+        _name = [[UILabel alloc] init];
+        _name.font = [UIFont systemFontOfSize:12];
+        _name.backgroundColor = [UIColor clearColor];
         
         // add the labels to the cell
         [self.contentView addSubview:_name];
         
     }
     
-    // return the custom cell
     return self;
+    
 }
 
-#pragma mark - Custom Functions
-
-- (CGFloat)getCalculatedCellHeight {
+- (void)layoutSubviews {
     
-    return _name.frame.size.height;
+    [super layoutSubviews];
+    
+    // adjust the frames of the cell labels
+    _name.frame = CGRectMake(LEFT_RIGHT_MARGIN, TOP_BOTTOM_MARGIN, self.contentView.frame.size.width - (LEFT_RIGHT_MARGIN * 2), LABEL_LINE_HEIGHT);
     
 }
 

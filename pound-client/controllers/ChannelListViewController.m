@@ -13,7 +13,7 @@
 #import "ContentModeLabel.h"
 #import "../../Pods/SSPullToRefresh/SSPullToRefresh.h"
 
-@interface ChannelListViewController () <UITableViewDataSource, UITableViewDelegate, SSPullToRefreshViewDelegate>
+@interface ChannelListViewController () <UITableViewDataSource, SSPullToRefreshViewDelegate>
 
 @property (nonatomic, strong) UITableView *table;
 @property (nonatomic, strong) NSMutableArray *channels;
@@ -32,19 +32,19 @@
     NSMutableArray *items = [[self.toolbar items] mutableCopy];
     
     // create the compose button
-    [items insertObject:[[UIBarButtonItem alloc] initWithTitle:@"Join" style:UIBarButtonItemStyleBordered target:self action:nil] atIndex:0];
+    [items insertObject:[[UIBarButtonItem alloc] initWithTitle:@"Edit"
+                                                         style:UIBarButtonItemStyleBordered
+                                                        target:self
+                                                        action:@selector(editButtonWasPressed:)] atIndex:0];
     
     // add the button to the toolbar
     [self.toolbar setItems:items];
     
     // initialize the table
-    _table = [[UITableView alloc] initWithFrame:CGRectMake(0,
-                                                           TOP_BAR_HEIGHT,
+    _table = [[UITableView alloc] initWithFrame:CGRectMake(0, TOP_BAR_HEIGHT,
                                                            self.view.frame.size.width,
                                                            self.view.frame.size.height - (TOP_BAR_HEIGHT + TAB_BAR_HEIGHT)) style:UITableViewStyleGrouped];
     _table.dataSource = self;
-    _table.delegate = self;
-    _table.editing = YES;
     
     // add the table to the subviews
     [self.view addSubview:_table];
@@ -56,15 +56,57 @@
     [self fetchChannels];
 }
 
-#pragma mark - UITableViewDelegate Functions
+- (void)editButtonWasPressed:(id)sender {
+    
+    NSMutableArray *items = [[self.toolbar items] mutableCopy];
+    
+    // change the edit button to a save button
+    [items setObject:[[UIBarButtonItem alloc] initWithTitle:@"Save"
+                                                      style:UIBarButtonItemStyleBordered
+                                                     target:self
+                                                     action:@selector(saveButtonWasPressed:)] atIndexedSubscript:0];
+    
+    // replace the toolbar items
+    [self.toolbar setItems:items];
+    
+    // animate the table change
+    [UIView animateWithDuration:0.1
+                          delay:0.0
+                        options:UIViewAnimationOptionAllowUserInteraction
+                     animations:^{
+                         
+                         // put the table into edit state
+                         _table.editing = YES;
+                         
+                     }
+                     completion:nil];
+    
+}
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)saveButtonWasPressed:(id)sender {
     
-    // get the cell for this index path
-    ChannelListCell *cell = (ChannelListCell *)[self tableView:tableView cellForRowAtIndexPath:indexPath];
+    NSMutableArray *items = [[self.toolbar items] mutableCopy];
     
-    // return the calculated height for this cell
-    return [cell getCalculatedCellHeight];
+    // change the save button to an edit button
+    [items setObject:[[UIBarButtonItem alloc] initWithTitle:@"Edit"
+                                                      style:UIBarButtonItemStyleBordered
+                                                     target:self
+                                                     action:@selector(editButtonWasPressed:)] atIndexedSubscript:0];
+    
+    // replace the toolbar items
+    [self.toolbar setItems:items];
+    
+    // animate the table chanle
+    [UIView animateWithDuration:0.1
+                          delay:0.0
+                        options:UIViewAnimationOptionAllowUserInteraction
+                     animations:^{
+                         
+                         // put the table into edit state
+                         _table.editing = NO;
+                         
+                     }
+                     completion:nil];
     
 }
 

@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "../../Pods/OHAttributedLabel/OHAttributedLabel/Source/OHAttributedLabel.h"
 
 @interface MessageListCell : UITableViewCell
 
-@property (nonatomic, strong) IBOutlet UILabel *source;
-@property (nonatomic, strong) IBOutlet UILabel *message;
-@property (nonatomic, strong) IBOutlet UILabel *timestamp;
+@property (nonatomic, strong) UILabel *source;
+@property (nonatomic, strong) UILabel *timestamp;
+@property (nonatomic, strong) OHAttributedLabel *message;
 
 - (CGFloat)getCalculatedCellHeight;
 

@@ -10,8 +10,6 @@
 
 @interface ChannelListCell : UITableViewCell
 
-@property (nonatomic, strong) IBOutlet UILabel *name;
-
-- (CGFloat)getCalculatedCellHeight;
+@property (nonatomic, strong) UILabel *name;
 
 @end

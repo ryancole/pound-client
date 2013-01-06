@@ -221,14 +221,14 @@
 				94A850C2168BC4AC00E10AD1 /* BaseViewController.m */,
 				94C49C22168C010D002F7B01 /* MessageListViewController.h */,
 				94C49C23168C010D002F7B01 /* MessageListViewController.m */,
+				94DC5F14169612910015CAC5 /* MentionListViewController.h */,
+				94DC5F15169612910015CAC5 /* MentionListViewController.m */,
 				94F56450169152C70040D029 /* ChannelListViewController.h */,
 				94F56451169152C70040D029 /* ChannelListViewController.m */,
 				943C3D0C16950EB300789040 /* SelectRecipientViewController.h */,
+				943C3D0D16950EB300789040 /* SelectRecipientViewController.m */,
 				942D204E169249EC00CD57DD /* ComposeMessageViewController.h */,
 				942D204F169249EC00CD57DD /* ComposeMessageViewController.m */,
-				943C3D0D16950EB300789040 /* SelectRecipientViewController.m */,
-				94DC5F14169612910015CAC5 /* MentionListViewController.h */,
-				94DC5F15169612910015CAC5 /* MentionListViewController.m */,
 			);
 			name = Controllers;
 			path = controllers;

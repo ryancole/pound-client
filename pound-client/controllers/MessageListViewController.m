@@ -37,6 +37,7 @@
                                                            self.view.frame.size.height - (TOP_BAR_HEIGHT + TAB_BAR_HEIGHT)) style:UITableViewStyleGrouped];
     _table.dataSource = self;
     _table.delegate = self;
+    _table.allowsSelection = NO;
     
     // add the table to this view's subview
     [self.view addSubview:_table];
