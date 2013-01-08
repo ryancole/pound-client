@@ -7,7 +7,6 @@
 //
 
 #import "MessageListCell.h"
-#import "ContentModeLabel.h"
 
 #define LEFT_RIGHT_MARGIN 10.0
 #define TOP_BOTTOM_MARGIN 10.0

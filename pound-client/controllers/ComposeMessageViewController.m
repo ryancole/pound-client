@@ -14,9 +14,10 @@
 @interface ComposeMessageViewController () <UITextViewDelegate, SelectRecipientDelegate>
 
 @property (nonatomic, strong) UITextView *messageInput;
-@property (nonatomic, strong) UIImageView *selectRecipientArea;
+@property (nonatomic, strong) UIBarButtonItem *sendButton;
 @property (nonatomic, strong) NSString *selectedRecipientName;
 @property (nonatomic, strong) UILabel *selectedRecipientLabel;
+@property (nonatomic, strong) UIImageView *selectRecipientArea;
 
 @end
 
@@ -30,15 +31,16 @@
     
     NSMutableArray *items = [[NSMutableArray alloc] init];
     
-    // initialize the toolbar
+    // initialize the button items
+    _sendButton = [[UIBarButtonItem alloc] initWithTitle:@"Send" style:UIBarButtonItemStyleDone target:self action:@selector(sendButtonPressed:)];
+    
     UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
     
-    // create the collection of bar button items
     [items addObject:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelButtonPressed:)]];
     [items addObject:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil]];
-    [items addObject:[[UIBarButtonItem alloc] initWithTitle:@"Send" style:UIBarButtonItemStyleDone target:self action:@selector(sendButtonPressed:)]];
+    [items addObject:_sendButton];
     
-    // add the compose button to the toolbar
+    // add the various toolbar items to the toolbar
     [toolbar setItems:items];
     
     // add the toolbar to this view's subview
@@ -55,7 +57,6 @@
     _selectRecipientArea = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 44, self.view.frame.size.width, 44)];
     _selectRecipientArea.image = [[UIImage imageNamed:@"MessageInputBarBackground"] resizableImageWithCapInsets:UIEdgeInsetsMake(19, 3, 19, 3)];
     _selectRecipientArea.userInteractionEnabled = YES;
-    _selectRecipientArea.opaque = YES;
     
     // add the channel select area to the view
     [self.view addSubview:_selectRecipientArea];
@@ -64,15 +65,16 @@
     
     // initialize the label for the channel select area
     _selectedRecipientLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 100, _selectRecipientArea.frame.size.height)];
+    _selectedRecipientLabel.text = [NSString stringWithFormat:@"To: %@", _selectedRecipientName];
     _selectedRecipientLabel.backgroundColor = [UIColor clearColor];
     _selectedRecipientLabel.textColor = [UIColor grayColor];
-    _selectedRecipientLabel.text = [NSString stringWithFormat:@"To: %@", _selectedRecipientName];
     
     // add the label to the recipient select area
     [_selectRecipientArea addSubview:_selectedRecipientLabel];
     
-    // initialize the select recipient button
     UIButton *selectRecipientButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
+    
+    // adjust the select recipient button's frame
     selectRecipientButton.frame = CGRectMake(_selectRecipientArea.frame.size.width - (selectRecipientButton.frame.size.width + 10),
                                              0,
                                              selectRecipientButton.frame.size.width,
@@ -85,6 +87,9 @@
     
     // add the select recipient button to the button area
     [_selectRecipientArea addSubview:selectRecipientButton];
+    
+    // default the send button to disabled
+    _sendButton.enabled = NO;
     
 }
 
@@ -118,6 +123,10 @@
 
 - (void)sendButtonPressed:(id)sender {
     
+    // disable the send button so it cannot be pressed again
+    _sendButton.enabled = NO;
+    
+    // send the request to the api server
     [[APIClient sharedInstance] sendMessage:_messageInput.text
                                   toRecipient:_selectedRecipientName
                                     success:^{
@@ -128,9 +137,11 @@
                                             
                                         }];
                                         
-                                    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                    }
+                                    failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                         
-                                        [self dismissViewControllerAnimated:YES completion:nil];
+                                        // re-enable the send button
+                                        _sendButton.enabled = YES;
                                         
                                     }];
     
@@ -210,7 +221,8 @@
                                                                  _selectRecipientArea.frame.size.width,
                                                                  _selectRecipientArea.frame.size.height);
                          
-                     } completion:nil];
+                     }
+                     completion:nil];
     
 }
 
@@ -226,6 +238,33 @@
     
     // update the label
     _selectedRecipientLabel.text = [NSString stringWithFormat:@"To: %@", recipient];
+    
+    // adjust the send button state
+    if (_selectedRecipientName.length > 0 && _messageInput.text.length > 0) {
+        
+        _sendButton.enabled = YES;
+        
+    } else {
+        
+        _sendButton.enabled = NO;
+        
+    }
+    
+}
+
+#pragma mark - UITextViewDelegate
+
+- (void)textViewDidChange:(UITextView *)textView {
+    
+    if (_selectedRecipientName.length > 0 && _messageInput.text.length > 0) {
+        
+        _sendButton.enabled = YES;
+        
+    } else {
+        
+        _sendButton.enabled = NO;
+        
+    }
     
 }
 

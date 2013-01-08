@@ -10,6 +10,17 @@
 
 @implementation Utilities
 
+- (id)init {
+    
+    if ((self = [super init])) {
+        
+        _previousRecipient = @"";
+        
+    }
+    
+    return self;
+}
+
 + (Utilities *)sharedInstance {
     
     static Utilities *_sharedInstance = nil;

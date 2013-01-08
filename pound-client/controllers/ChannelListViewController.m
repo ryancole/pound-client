@@ -7,13 +7,12 @@
 //
 
 #import "ChannelListViewController.h"
+#import "JoinChannelViewController.h"
 #import "APIClient.h"
-#import "ChannelListCell.h"
 #import "Channel.h"
-#import "ContentModeLabel.h"
 #import "../../Pods/SSPullToRefresh/SSPullToRefresh.h"
 
-@interface ChannelListViewController () <UITableViewDataSource, SSPullToRefreshViewDelegate>
+@interface ChannelListViewController () <UITableViewDataSource, UITableViewDelegate, SSPullToRefreshViewDelegate, JoinChannelDelegate>
 
 @property (nonatomic, strong) UITableView *table;
 @property (nonatomic, strong) NSMutableArray *channels;
@@ -45,6 +44,7 @@
                                                            self.view.frame.size.width,
                                                            self.view.frame.size.height - (TOP_BAR_HEIGHT + TAB_BAR_HEIGHT)) style:UITableViewStyleGrouped];
     _table.dataSource = self;
+    _table.delegate = self;
     
     // add the table to the subviews
     [self.view addSubview:_table];
@@ -61,7 +61,7 @@
     NSMutableArray *items = [[self.toolbar items] mutableCopy];
     
     // change the edit button to a save button
-    [items setObject:[[UIBarButtonItem alloc] initWithTitle:@"Save"
+    [items setObject:[[UIBarButtonItem alloc] initWithTitle:@"Done"
                                                       style:UIBarButtonItemStyleBordered
                                                      target:self
                                                      action:@selector(saveButtonWasPressed:)] atIndexedSubscript:0];
@@ -69,17 +69,8 @@
     // replace the toolbar items
     [self.toolbar setItems:items];
     
-    // animate the table change
-    [UIView animateWithDuration:0.1
-                          delay:0.0
-                        options:UIViewAnimationOptionAllowUserInteraction
-                     animations:^{
-                         
-                         // put the table into edit state
-                         _table.editing = YES;
-                         
-                     }
-                     completion:nil];
+    // put the view into editing mode
+    [self setEditing:YES animated:YES];
     
 }
 
@@ -96,42 +87,90 @@
     // replace the toolbar items
     [self.toolbar setItems:items];
     
-    // animate the table chanle
-    [UIView animateWithDuration:0.1
-                          delay:0.0
-                        options:UIViewAnimationOptionAllowUserInteraction
-                     animations:^{
-                         
-                         // put the table into edit state
-                         _table.editing = NO;
-                         
-                     }
-                     completion:nil];
+    // take the view out of editing mode
+    [self setEditing:NO animated:YES];
     
 }
 
-#pragma mark - UITableViewDataSource Functions
+#pragma mark - UITableViewDelegate
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (indexPath.row == _channels.count)
+        return UITableViewCellEditingStyleInsert;
+    
+    return UITableViewCellEditingStyleDelete;
+    
+}
+
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated {
+    
+    [super setEditing:editing animated:animated];
+    
+    // keep the table in the same editing mode
+    [_table setEditing:editing animated:animated];
+    
+    if (editing) {
+        
+        [_table beginUpdates];
+        [_table insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:_channels.count inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+        [_table endUpdates];
+        
+    } else {
+        
+        [_table beginUpdates];
+        [_table deleteRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:_channels.count inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+        [_table endUpdates];
+        
+    }
+    
+}
+
+#pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return _channels.count;
+    return _table.isEditing ? _channels.count + 1 : _channels.count;
     
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    // get the corresponding channel item
-    Channel *channel = [_channels objectAtIndex:indexPath.row];
+    // initialize the default cell identifier
+    NSString *cellIdentifier = @"channelListCell";
     
-    // dequeue a cell object
-    ChannelListCell *cell = (ChannelListCell *)[_table dequeueReusableCellWithIdentifier:@"channelListCell"];
+    // initialize a reusable bool for whether or not this cell is for the add row
+    BOOL isAddRow = (indexPath.row == _channels.count);
     
-    // initialize the cell if it's null
-    if (cell == nil)
-        cell = [[ChannelListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"channelListCell"];
+    // adjust cell identifier if this is the add row cell
+    if (isAddRow)
+        cellIdentifier = @"joinChannelCell";
     
-    // set the cell attributes
-    cell.name.text = channel.name;
+    UITableViewCell *cell = [_table dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    if (cell == nil) {
+        
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
+        
+        if (isAddRow)
+            cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+        
+    }
+    
+    if (isAddRow) {
+        
+        cell.textLabel.text = @"Join a new channel ...";
+        
+    } else {
+        
+        // get the channel for this row
+        Channel *channel = [_channels objectAtIndex:indexPath.row];
+        
+        // set the cell label texts
+        cell.textLabel.text = channel.name;
+        cell.detailTextLabel.text = @"50 users";
+        
+    }
     
     return cell;
     
@@ -155,6 +194,18 @@
                                              /* not sure */
                                              
                                          }];
+        
+    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        
+        JoinChannelViewController *view = [[JoinChannelViewController alloc] init];
+        
+        // the view should slide up from the bottom and cover everything
+        view.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+        view.modalPresentationStyle = UIModalPresentationFormSheet;
+        view.delegate = self;
+        
+        // bring up the view
+        [self presentViewController:view animated:YES completion:nil];
         
     }
     
@@ -198,6 +249,18 @@
 - (void)pullToRefreshViewDidStartLoading:(SSPullToRefreshView *)view {
     
     [self fetchChannels];
+    
+}
+
+#pragma mark - JoinChannelDelegate
+
+- (void)channelWithName:(NSString *)channel wasJoined:(BOOL)success {
+    
+    if (success) {
+        
+        [self fetchChannels];
+        
+    }
     
 }
 

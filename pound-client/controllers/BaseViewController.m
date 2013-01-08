@@ -9,12 +9,6 @@
 #import "BaseViewController.h"
 #import "Utilities.h"
 
-@interface BaseViewController ()
-
-@property (nonatomic, strong) NSString *previousRecipient;
-
-@end
-
 @implementation BaseViewController
 
 - (void)viewDidLoad {

@@ -9,10 +9,11 @@
 /* Begin PBXBuildFile section */
 		94077894168CD53B00889505 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 94077893168CD53B00889505 /* Message.m */; };
 		94077898168CE3B000889505 /* MessageListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94077897168CE3B000889505 /* MessageListCell.m */; };
+		942596B9169A1E6200682E44 /* JoinChannelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 942596B8169A1E6200682E44 /* JoinChannelCell.m */; };
 		942D2050169249ED00CD57DD /* ComposeMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 942D204F169249EC00CD57DD /* ComposeMessageViewController.m */; };
 		943042EB168E5D6E009339E3 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 943042EA168E5D6E009339E3 /* Settings.bundle */; };
 		943C3D0E16950EB300789040 /* SelectRecipientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 943C3D0D16950EB300789040 /* SelectRecipientViewController.m */; };
-		949941B0168F8F6A00E6C73D /* ContentModeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 949941AF168F8F6A00E6C73D /* ContentModeLabel.m */; };
+		948290E4169BB9160047C391 /* JoinChannelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 948290E3169BB9160047C391 /* JoinChannelViewController.m */; };
 		949941B3168F90CC00E6C73D /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 949941B2168F90CC00E6C73D /* Utilities.m */; };
 		94A85098168BB71F00E10AD1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94A85097168BB71F00E10AD1 /* UIKit.framework */; };
 		94A8509A168BB71F00E10AD1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94A85099168BB71F00E10AD1 /* Foundation.framework */; };
@@ -53,13 +54,15 @@
 		94077893168CD53B00889505 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		94077896168CE3B000889505 /* MessageListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageListCell.h; sourceTree = "<group>"; };
 		94077897168CE3B000889505 /* MessageListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageListCell.m; sourceTree = "<group>"; };
+		942596B7169A1E6100682E44 /* JoinChannelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoinChannelCell.h; sourceTree = "<group>"; };
+		942596B8169A1E6200682E44 /* JoinChannelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoinChannelCell.m; sourceTree = "<group>"; };
 		942D204E169249EC00CD57DD /* ComposeMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComposeMessageViewController.h; sourceTree = "<group>"; };
 		942D204F169249EC00CD57DD /* ComposeMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposeMessageViewController.m; sourceTree = "<group>"; };
 		943042EA168E5D6E009339E3 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		943C3D0C16950EB300789040 /* SelectRecipientViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectRecipientViewController.h; sourceTree = "<group>"; };
 		943C3D0D16950EB300789040 /* SelectRecipientViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectRecipientViewController.m; sourceTree = "<group>"; };
-		949941AE168F8F6A00E6C73D /* ContentModeLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentModeLabel.h; sourceTree = "<group>"; };
-		949941AF168F8F6A00E6C73D /* ContentModeLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentModeLabel.m; sourceTree = "<group>"; };
+		948290E2169BB9160047C391 /* JoinChannelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoinChannelViewController.h; sourceTree = "<group>"; };
+		948290E3169BB9160047C391 /* JoinChannelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoinChannelViewController.m; sourceTree = "<group>"; };
 		949941B1168F90CC00E6C73D /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		949941B2168F90CC00E6C73D /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
 		94A85093168BB71F00E10AD1 /* pound-client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "pound-client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,12 +141,12 @@
 		94077895168CE38100889505 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				949941AE168F8F6A00E6C73D /* ContentModeLabel.h */,
-				949941AF168F8F6A00E6C73D /* ContentModeLabel.m */,
 				94077896168CE3B000889505 /* MessageListCell.h */,
 				94077897168CE3B000889505 /* MessageListCell.m */,
 				94F56457169157570040D029 /* ChannelListCell.h */,
 				94F56458169157570040D029 /* ChannelListCell.m */,
+				942596B7169A1E6100682E44 /* JoinChannelCell.h */,
+				942596B8169A1E6200682E44 /* JoinChannelCell.m */,
 			);
 			name = Views;
 			path = views;
@@ -229,6 +232,8 @@
 				943C3D0D16950EB300789040 /* SelectRecipientViewController.m */,
 				942D204E169249EC00CD57DD /* ComposeMessageViewController.h */,
 				942D204F169249EC00CD57DD /* ComposeMessageViewController.m */,
+				948290E2169BB9160047C391 /* JoinChannelViewController.h */,
+				948290E3169BB9160047C391 /* JoinChannelViewController.m */,
 			);
 			name = Controllers;
 			path = controllers;
@@ -364,7 +369,6 @@
 				94C49C2C168C07C6002F7B01 /* APIClient.m in Sources */,
 				94077894168CD53B00889505 /* Message.m in Sources */,
 				94077898168CE3B000889505 /* MessageListCell.m in Sources */,
-				949941B0168F8F6A00E6C73D /* ContentModeLabel.m in Sources */,
 				949941B3168F90CC00E6C73D /* Utilities.m in Sources */,
 				94F56452169152C70040D029 /* ChannelListViewController.m in Sources */,
 				94F56456169153940040D029 /* Channel.m in Sources */,
@@ -372,6 +376,8 @@
 				942D2050169249ED00CD57DD /* ComposeMessageViewController.m in Sources */,
 				943C3D0E16950EB300789040 /* SelectRecipientViewController.m in Sources */,
 				94DC5F16169612910015CAC5 /* MentionListViewController.m in Sources */,
+				942596B9169A1E6200682E44 /* JoinChannelCell.m in Sources */,
+				948290E4169BB9160047C391 /* JoinChannelViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

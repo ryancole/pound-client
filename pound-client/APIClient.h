@@ -31,6 +31,10 @@
              success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
              failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
+- (void)joinChannel:(NSString *)name
+            success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+            failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
 - (void)getMentions:(void (^)(NSMutableArray *mentions))success
             failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 

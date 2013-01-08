@@ -143,6 +143,19 @@
     
 }
 
+- (void)joinChannel:(NSString *)name
+            success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+            failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    
+    NSDictionary *parameters = @{ @"channel": name };
+    
+    [self postPath:@"channel"
+        parameters:parameters
+           success:success
+           failure:failure];
+    
+}
+
 - (void)getMentions:(void (^)(NSMutableArray *mentions))success
             failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
     

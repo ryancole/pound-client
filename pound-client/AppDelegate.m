@@ -11,13 +11,15 @@
 
 @implementation AppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-    // set the tab bar delegate
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
     UITabBarController *tabBarController = (UITabBarController *)_window.rootViewController;
+    
+    // needed to detect which tab item is tapped
     tabBarController.delegate = self;
     
     return YES;
+    
 }
 
 #pragma mark - UITabBarControllerDelegate
@@ -26,12 +28,12 @@
     
     if (tabBarController.selectedViewController == viewController && [viewController isKindOfClass:[MessageListViewController class]]) {
         
-        // get reference to the selected view controller
         MessageListViewController *messageList = (MessageListViewController *)viewController;
         
         // scroll the table to the top
         [messageList scrollTableToTop];
         
+        // don't fire any selection events
         return NO;
         
     }
