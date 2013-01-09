@@ -152,9 +152,6 @@
         
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
         
-        if (isAddRow)
-            cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
-        
     }
     
     if (isAddRow) {
