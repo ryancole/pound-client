@@ -69,8 +69,12 @@
     // replace the toolbar items
     [self.toolbar setItems:items];
     
+    [_table beginUpdates];
+    
     // put the view into editing mode
     [self setEditing:YES animated:YES];
+    
+    [_table endUpdates];
     
 }
 
@@ -87,8 +91,12 @@
     // replace the toolbar items
     [self.toolbar setItems:items];
     
+    [_table beginUpdates];
+    
     // take the view out of editing mode
     [self setEditing:NO animated:YES];
+    
+    [_table endUpdates];
     
 }
 
@@ -107,20 +115,19 @@
     
     [super setEditing:editing animated:animated];
     
-    // keep the table in the same editing mode
-    [_table setEditing:editing animated:animated];
-    
     if (editing) {
         
-        [_table beginUpdates];
-        [_table insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:_channels.count inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
-        [_table endUpdates];
+        [_table insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:_channels.count inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+        
+        // keep the table in the same editing mode
+        [_table setEditing:editing animated:animated];
         
     } else {
         
-        [_table beginUpdates];
-        [_table deleteRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:_channels.count inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
-        [_table endUpdates];
+        // keep the table in the same editing mode
+        [_table setEditing:editing animated:animated];
+        
+        [_table deleteRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:_channels.count inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
         
     }
     
@@ -165,7 +172,7 @@
         
         // set the cell label texts
         cell.textLabel.text = channel.name;
-        cell.detailTextLabel.text = @"50 users";
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%d users", channel.users.count];
         
     }
     
