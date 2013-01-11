@@ -14,6 +14,7 @@
 
 @interface ChannelListViewController () <UITableViewDataSource, UITableViewDelegate, SSPullToRefreshViewDelegate, JoinChannelDelegate>
 
+@property (nonatomic) BOOL tableIsEditing;
 @property (nonatomic, strong) UITableView *table;
 @property (nonatomic, strong) NSMutableArray *channels;
 @property (nonatomic, strong) SSPullToRefreshView *pullToRefreshView;
@@ -52,6 +53,9 @@
     // initialize third party libs
     _pullToRefreshView = [[SSPullToRefreshView alloc] initWithScrollView:_table delegate:self];
     
+    // table is not editing by default
+    _tableIsEditing = NO;
+    
     // fetch messages
     [self fetchChannels];
 }
@@ -69,12 +73,8 @@
     // replace the toolbar items
     [self.toolbar setItems:items];
     
-    [_table beginUpdates];
-    
     // put the view into editing mode
     [self setEditing:YES animated:YES];
-    
-    [_table endUpdates];
     
 }
 
@@ -91,12 +91,29 @@
     // replace the toolbar items
     [self.toolbar setItems:items];
     
-    [_table beginUpdates];
-    
     // take the view out of editing mode
     [self setEditing:NO animated:YES];
     
-    [_table endUpdates];
+}
+
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated {
+    
+    _tableIsEditing = editing;
+    
+    if (_tableIsEditing == YES) {
+        
+        [_table insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:_channels.count inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+        
+    }
+    
+    [super setEditing:editing animated:animated];
+    [_table setEditing:editing animated:animated];
+    
+    if (_tableIsEditing == NO) {
+        
+        [_table deleteRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:_channels.count inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+        
+    }
     
 }
 
@@ -111,33 +128,11 @@
     
 }
 
-- (void)setEditing:(BOOL)editing animated:(BOOL)animated {
-    
-    [super setEditing:editing animated:animated];
-    
-    if (editing) {
-        
-        [_table insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:_channels.count inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
-        
-        // keep the table in the same editing mode
-        [_table setEditing:editing animated:animated];
-        
-    } else {
-        
-        // keep the table in the same editing mode
-        [_table setEditing:editing animated:animated];
-        
-        [_table deleteRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:_channels.count inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
-        
-    }
-    
-}
-
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return _table.isEditing ? _channels.count + 1 : _channels.count;
+    return _tableIsEditing ? _channels.count + 1 : _channels.count;
     
 }
 
