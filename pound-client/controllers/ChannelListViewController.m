@@ -46,6 +46,7 @@
                                                            self.view.frame.size.height - (TOP_BAR_HEIGHT + TAB_BAR_HEIGHT)) style:UITableViewStyleGrouped];
     _table.dataSource = self;
     _table.delegate = self;
+    _table.allowsSelection = NO;
     
     // add the table to the subviews
     [self.view addSubview:_table];
@@ -100,16 +101,17 @@
     
     _tableIsEditing = editing;
     
-    if (_tableIsEditing == YES) {
+    if (editing == YES) {
         
         [_table insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:_channels.count inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
         
-    }
-    
-    [super setEditing:editing animated:animated];
-    [_table setEditing:editing animated:animated];
-    
-    if (_tableIsEditing == NO) {
+        [super setEditing:editing animated:animated];
+        [_table setEditing:editing animated:animated];
+        
+    } else if (editing == NO) {
+        
+        [super setEditing:editing animated:animated];
+        [_table setEditing:editing animated:animated];
         
         [_table deleteRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:_channels.count inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
         
@@ -121,10 +123,19 @@
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (indexPath.row == _channels.count)
+    if (indexPath.row == _channels.count) {
+        
         return UITableViewCellEditingStyleInsert;
+        
+    }
     
     return UITableViewCellEditingStyleDelete;
+    
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    return @"Leave";
     
 }
 
