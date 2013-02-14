@@ -10,14 +10,12 @@
 #import "JoinChannelViewController.h"
 #import "APIClient.h"
 #import "Channel.h"
-#import "../../Pods/SSPullToRefresh/SSPullToRefresh.h"
 
-@interface ChannelListViewController () <UITableViewDataSource, UITableViewDelegate, SSPullToRefreshViewDelegate, JoinChannelDelegate>
+@interface ChannelListViewController () <UITableViewDataSource, UITableViewDelegate, JoinChannelDelegate>
 
 @property (nonatomic) BOOL tableIsEditing;
 @property (nonatomic, strong) UITableView *table;
 @property (nonatomic, strong) NSMutableArray *channels;
-@property (nonatomic, strong) SSPullToRefreshView *pullToRefreshView;
 
 - (void)fetchChannels;
 
@@ -50,9 +48,6 @@
     
     // add the table to the subviews
     [self.view addSubview:_table];
-    
-    // initialize third party libs
-    _pullToRefreshView = [[SSPullToRefreshView alloc] initWithScrollView:_table delegate:self];
     
     // table is not editing by default
     _tableIsEditing = NO;
@@ -103,7 +98,7 @@
     
     if (editing == YES) {
         
-        [_table insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:_channels.count inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+        [_table insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:_channels.count inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
         
         [super setEditing:editing animated:animated];
         [_table setEditing:editing animated:animated];
@@ -113,7 +108,7 @@
         [super setEditing:editing animated:animated];
         [_table setEditing:editing animated:animated];
         
-        [_table deleteRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:_channels.count inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+        [_table deleteRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:_channels.count inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
         
     }
     
@@ -230,35 +225,15 @@
         // store the channels
         _channels = channels;
         
-        // end pull to refresh
-        [_pullToRefreshView finishLoading];
-        
         // reload the table view
         [_table reloadData];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
-        // end pull to refresh
-        [_pullToRefreshView finishLoading];
-        
         // reload the table view
         [_table reloadData];
         
     }];
-    
-}
-
-#pragma mark - SSPullToRefreshDelgate Functions
-
-- (BOOL)pullToRefreshViewShouldStartLoading:(SSPullToRefreshView *)view {
-    
-    return YES;
-    
-}
-
-- (void)pullToRefreshViewDidStartLoading:(SSPullToRefreshView *)view {
-    
-    [self fetchChannels];
     
 }
 
